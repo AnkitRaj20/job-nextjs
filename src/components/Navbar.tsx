@@ -35,10 +35,10 @@ const Navbar = () => {
 		<div className="font-bold">
 
 		<button className="inline-flex items-center bg-gray-100 border-0 py-3 px-3  mr-2 focus:outline-none hover:bg-gray-200 rounded-lg text-base mt-4 md:mt-0">
-          Register
+    <Link href="/employerLogin">Employer Login</Link>
         </button>
 		<button className="inline-flex items-center bg-green-300 border-0 py-3 px-3 hover:text-white focus:outline-none hover:bg-green-500 rounded-lg text-base mt-4 md:mt-0">
-          <Link href="/login3">Login</Link>
+          <Link href="/login3">User Login</Link>
           <svg
             fill="none"
             stroke="currentColor"
