@@ -27,11 +27,13 @@ const page = ({params}:any) => {
   const id = params.id
 
   const [data, setData] = useState({
+    id: "",
     firstName: "",
     middleName: "",
     lastName: "",
     mobile:"",
     email:"",
+    gender: ""
   })
 
   useEffect(() => {
@@ -40,6 +42,7 @@ const page = ({params}:any) => {
       const response = await axios.post("/api/users/profile", {_id:id});
       console.log("Success",response.data)
       setData({
+        id: response.data._id,
         firstName: response.data.firstName,
         middleName: response.data.middleName,
         lastName: response.data.lastName,
@@ -53,6 +56,18 @@ const page = ({params}:any) => {
     };
     fetchData();
   },[])
+
+
+  // Update the profile
+  const update = async() => {
+    try {
+      const response = await axios.post("/api/users/updateProfile", {data})
+
+      console.log(response)
+    } catch (error:any) {
+      console.log(error.response.data.error);
+    }
+  }
 
   return (
     <Grid container spacing={3}>
@@ -69,22 +84,39 @@ const page = ({params}:any) => {
             <div>
               <TextField
                 required
-                id="outlined-required"
+                id="firstName"
                 label="First Name"
                 value={data.firstName}
-                
+                onChange={(e) => {
+                  setData({
+                    ...data,
+                    firstName: e.target.value,
+                  })
+                }}
               />
               <TextField
                 required
-                id="outlined-required"
+                id="middleName"
                 label="Middle Name"
                 value={data.middleName}
+                onChange={(e) => {
+                  setData({
+                    ...data,
+                    middleName: e.target.value,
+                  })
+                }}
               />
               <TextField
                 required
-                id="outlined-required"
+                id="lastName"
                 label="Last Name"
                 value={data.lastName}
+                onChange={(e) => {
+                  setData({
+                    ...data,
+                    lastName: e.target.value,
+                  })
+                }}
               />
 
               <div>
@@ -94,9 +126,21 @@ const page = ({params}:any) => {
                   label="Email"
                   variant="outlined"
                   value={data.email}
+                  onChange={(e) => {
+                    setData({
+                      ...data,
+                      email: e.target.value,
+                    })
+                  }}
                 />
-                <TextField id="outlined-number" label="Number" type="number"
+                <TextField id="standard-number" label="Number" type="number"
                 value={data.mobile}
+                onChange={(e) => {
+                  setData({
+                    ...data,
+                    mobile: e.target.value,
+                  })
+                }}
                 />
 
                 <FormControl>
@@ -127,6 +171,7 @@ const page = ({params}:any) => {
                   </RadioGroup>
                 </FormControl>
               </div>
+            <Button variant="text" color="primary" onClick={update} >Update</Button>
             </div>
           </Box>
         </BaseCard>
