@@ -22,10 +22,8 @@ import axios from "axios";
 
 
 
-const page = ({params}:any) => {
-  console.log("id::"+params.id)
-  const id = params.id
-
+const page = () => {
+  const [id,setId] = useState("")
   const [data, setData] = useState({
     id: "",
     firstName: "",
@@ -33,29 +31,39 @@ const page = ({params}:any) => {
     lastName: "",
     mobile:"",
     email:"",
-    gender: ""
+    // gender: ""
   })
 
+  const getUserDetails = async () => {
+    const response = await axios.get("/api/users/userData");
+    console.log(response.data.data._id);
+setId(response.data.data._id);
+  };
+  const fetchData = async () => {
+    console.log("id::"+id)
+    try {
+     const response = await axios.post("/api/users/profile", {_id:id});
+     console.log("Success",response.data)
+     setData({
+       id: response.data._id,
+       firstName: response.data.firstName,
+       middleName: response.data.middleName,
+       lastName: response.data.lastName,
+       mobile: response.data.mobile,
+       email: response.data.email,
+     })
+    }catch (error:any) {
+     console.log(error.response.data.error);
+     // toast.error(error.response.data.error);
+ }
+   };
   useEffect(() => {
-    const fetchData = async () => {
-     try {
-      const response = await axios.post("/api/users/profile", {_id:id});
-      console.log("Success",response.data)
-      setData({
-        id: response.data._id,
-        firstName: response.data.firstName,
-        middleName: response.data.middleName,
-        lastName: response.data.lastName,
-        mobile: response.data.mobile,
-        email: response.data.email,
-      })
-     }catch (error:any) {
-      console.log(error.response.data.error);
-      // toast.error(error.response.data.error);
-  }
-    };
-    fetchData();
+    getUserDetails();
   },[])
+
+  useEffect(() => {
+    fetchData();
+  },[id])
 
 
   // Update the profile
@@ -95,7 +103,7 @@ const page = ({params}:any) => {
                 }}
               />
               <TextField
-                required
+                
                 id="middleName"
                 label="Middle Name"
                 value={data.middleName}
@@ -143,7 +151,7 @@ const page = ({params}:any) => {
                 }}
                 />
 
-                <FormControl>
+                {/* <FormControl>
                   <FormLabel id="demo-radio-buttons-group-label">
                     Gender
                   </FormLabel>
@@ -169,7 +177,7 @@ const page = ({params}:any) => {
                       label="Other"
                     />
                   </RadioGroup>
-                </FormControl>
+                </FormControl> */}
               </div>
             <Button variant="text" color="primary" onClick={update} >Update</Button>
             </div>

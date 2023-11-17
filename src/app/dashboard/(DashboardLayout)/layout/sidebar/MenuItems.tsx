@@ -1,11 +1,9 @@
 import {
-  IconBoxMultiple, IconCircleDot, IconHome, IconInfoCircle, IconLayout, IconLayoutGrid, IconPhoto, IconPoint, IconStar, IconTable, IconUser
+  IconUserCircle,IconAddressBook, IconCircleDot, IconHome, IconInfoCircle, IconLayout, IconLayoutGrid, IconPhoto, IconPoint, IconStar, IconTable, IconUser
 } from "@tabler/icons-react";
 
 import { uniqueId } from "lodash";
 
-const pathName = window.location.pathname
-console.log(pathName)
 
 const Menuitems = [
   // {
@@ -17,8 +15,14 @@ const Menuitems = [
   {
     id: uniqueId(),
     title: "Profile",
-    icon: IconCircleDot,
-    href: pathName,
+    icon: IconUserCircle,
+    href: "/dashboard/profile",
+  },
+  {
+    id: uniqueId(),
+    title: "Post Job",
+    icon: IconAddressBook,
+    href: "/dashboard/postJob",
   },
   {
     id: uniqueId(),

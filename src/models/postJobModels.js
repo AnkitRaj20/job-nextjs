@@ -1,16 +1,13 @@
 import mongoose from "mongoose";
 
 const postJobSchema = new mongoose.Schema({
-    name: {
+    employerId: {
         type: String,
-        required: [true, "Please provide your  name"],
-    },
-    title: {
-        type: String,
-        required: [true, "Please provide job title"],
+        required: [true, "Please provide your employer id"],
     },
     role: {
         type: String,
+        required: [true, "Please provide job role"],
     },
     location: {
         type: String,
@@ -22,19 +19,21 @@ const postJobSchema = new mongoose.Schema({
     experience: {
         type: String,
     },
-    languages: {
+    english: {
         type: String,
-    },
-    gender:{
-        type:String,
     },
     mobile:{
         type:Number,
         required:[true,"Please provide mobile number"],
     },
-    email:{
-        type:String,
+    salary:{
+        type:Number,
+        required:[true,"Please provide approx salary"],
     },
+    jobType:{
+        type:String,
+        required: [true,"Please provide job type "]
+    }
 
 })
 
