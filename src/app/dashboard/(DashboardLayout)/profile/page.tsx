@@ -20,62 +20,61 @@ import BaseCard from "@/app/dashboard/(DashboardLayout)/components/shared/BaseCa
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-
-
 const page = () => {
-  const [id,setId] = useState("")
+  const [id, setId] = useState("");
   const [data, setData] = useState({
     id: "",
     firstName: "",
     middleName: "",
     lastName: "",
-    mobile:"",
-    email:"",
+    mobile: "",
+    email: "",
     // gender: ""
-  })
+  });
 
   const getUserDetails = async () => {
     const response = await axios.get("/api/users/userData");
     console.log(response.data.data._id);
-setId(response.data.data._id);
+    setId(response.data.data._id);
   };
+
   const fetchData = async () => {
-    console.log("id::"+id)
+    console.log("id::" + id);
     try {
-     const response = await axios.post("/api/users/profile", {_id:id});
-     console.log("Success",response.data)
-     setData({
-       id: response.data._id,
-       firstName: response.data.firstName,
-       middleName: response.data.middleName,
-       lastName: response.data.lastName,
-       mobile: response.data.mobile,
-       email: response.data.email,
-     })
-    }catch (error:any) {
-     console.log(error.response.data.error);
-     // toast.error(error.response.data.error);
- }
-   };
+      const response = await axios.post("/api/users/profile", { _id: id });
+      console.log("Success", response.data);
+      setData({
+        id: response.data._id,
+        firstName: response.data.firstName,
+        middleName: response.data.middleName,
+        lastName: response.data.lastName,
+        mobile: response.data.mobile,
+        email: response.data.email,
+      });
+    } catch (error: any) {
+      console.log(error.response.data.error);
+      // toast.error(error.response.data.error);
+    }
+  };
   useEffect(() => {
     getUserDetails();
-  },[])
+  }, []);
+  
 
   useEffect(() => {
     fetchData();
-  },[id])
-
+  }, [id]);
 
   // Update the profile
-  const update = async() => {
+  const update = async () => {
     try {
-      const response = await axios.post("/api/users/updateProfile", {data})
+      const response = await axios.post("/api/users/updateProfile", { data });
 
-      console.log(response)
-    } catch (error:any) {
+      console.log(response);
+    } catch (error: any) {
       console.log(error.response.data.error);
     }
-  }
+  };
 
   return (
     <Grid container spacing={3}>
@@ -99,11 +98,10 @@ setId(response.data.data._id);
                   setData({
                     ...data,
                     firstName: e.target.value,
-                  })
+                  });
                 }}
               />
               <TextField
-                
                 id="middleName"
                 label="Middle Name"
                 value={data.middleName}
@@ -111,7 +109,7 @@ setId(response.data.data._id);
                   setData({
                     ...data,
                     middleName: e.target.value,
-                  })
+                  });
                 }}
               />
               <TextField
@@ -123,7 +121,7 @@ setId(response.data.data._id);
                   setData({
                     ...data,
                     lastName: e.target.value,
-                  })
+                  });
                 }}
               />
 
@@ -138,17 +136,20 @@ setId(response.data.data._id);
                     setData({
                       ...data,
                       email: e.target.value,
-                    })
+                    });
                   }}
                 />
-                <TextField id="standard-number" label="Number" type="number"
-                value={data.mobile}
-                onChange={(e) => {
-                  setData({
-                    ...data,
-                    mobile: e.target.value,
-                  })
-                }}
+                <TextField
+                  id="standard-number"
+                  label="Number"
+                  type="number"
+                  value={data.mobile}
+                  onChange={(e) => {
+                    setData({
+                      ...data,
+                      mobile: e.target.value,
+                    });
+                  }}
                 />
 
                 {/* <FormControl>
@@ -179,7 +180,9 @@ setId(response.data.data._id);
                   </RadioGroup>
                 </FormControl> */}
               </div>
-            <Button variant="text" color="primary" onClick={update} >Update</Button>
+              <Button variant="text" color="primary" onClick={update}>
+                Update
+              </Button>
             </div>
           </Box>
         </BaseCard>

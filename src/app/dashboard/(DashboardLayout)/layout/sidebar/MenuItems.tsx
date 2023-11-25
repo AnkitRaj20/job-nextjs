@@ -1,5 +1,5 @@
 import {
-  IconUserCircle,IconAddressBook, IconCircleDot, IconHome, IconInfoCircle, IconLayout, IconLayoutGrid, IconPhoto, IconPoint, IconStar, IconTable, IconUser
+  IconUserCircle,IconEyeTable,IconLogout2,IconAddressBook, IconCircleDot, IconHome, IconInfoCircle, IconLayout, IconLayoutGrid, IconPhoto, IconPoint, IconStar, IconTable, IconUser
 } from "@tabler/icons-react";
 
 import { uniqueId } from "lodash";
@@ -23,6 +23,18 @@ const Menuitems = [
     title: "Post Job",
     icon: IconAddressBook,
     href: "/dashboard/postJob",
+  },
+  {
+    id: uniqueId(),
+    title: "View Posted Job",
+    icon: IconEyeTable,
+    href: "/dashboard/postedJob",
+  },
+  {
+    id: uniqueId(),
+    title: "Logout",
+    icon: IconLogout2,
+    href: "/dashboard/logout",
   },
   {
     id: uniqueId(),

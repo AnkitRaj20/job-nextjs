@@ -1,5 +1,4 @@
 // Getting the user data from token
-
 import {getDataFromToken} from "@/helper/getDataFromToken";
 
 import {NextRequest,NextResponse} from 'next/server';

@@ -172,17 +172,17 @@ const page = () => {
                   }}
                     >
                       <FormControlLabel
-                        value="full"
+                        value="Full Time"
                         control={<Radio />}
                         label="Full Time"
                       />
                       <FormControlLabel
-                        value="part"
+                        value="Part Time"
                         control={<Radio />}
                         label="Part Time"
                       />
                       <FormControlLabel
-                        value="both"
+                        value="Both Full Time and Part Time"
                         control={<Radio />}
                         label="Both Full Time and Part Time"
                       />
