@@ -15,7 +15,7 @@ import {
   Box,
 } from "@mui/material";
 
-import BaseCard from "@/app/dashboard/(DashboardLayout)/components/shared/BaseCard";
+import BaseCard from "@/app/userDashboard/(DashboardLayout)/components/shared/BaseCard";
 
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -33,7 +33,7 @@ const page = () => {
   });
 
   const getUserDetails = async () => {
-    const response = await axios.get("/api/users/userData");
+    const response = await axios.get("/api/users/candidateData");
     console.log(response.data.data._id);
     setId(response.data.data._id);
   };
@@ -41,7 +41,7 @@ const page = () => {
   const fetchData = async () => {
     console.log("id::" + id);
     try {
-      const response = await axios.post("/api/users/profile", { _id: id });
+      const response = await axios.post("/api/users/candidateProfile", { _id: id });
       console.log("Success", response.data);
       setData({
         id: response.data._id,
@@ -68,7 +68,7 @@ const page = () => {
   // Update the profile
   const update = async () => {
     try {
-      const response = await axios.post("/api/users/updateProfile", { data });
+      const response = await axios.post("/api/users/updateCandidateProfile", { data });
 
       console.log(response);
     } catch (error: any) {

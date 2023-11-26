@@ -1,6 +1,9 @@
 "use client";
 
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 import axios from "axios";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
@@ -75,17 +78,22 @@ export default function Page() {
 
   return (
     <div>
+      <Navbar />
         <Toaster />
       <section className="min-h-screen flex items-stretch text-white">
         <div className="lg:flex w-1/2 hidden bg-gray-500 bg-no-repeat bg-cover relative items-center bg-[url('https://images.unsplash.com/photo-1577495508048-b635879837f1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80')]">
           <div className="absolute bg-black opacity-60 inset-0 z-0"></div>
           <div className="w-full px-24 z-10">
             <h1 className="text-5xl font-bold text-left tracking-wide">
-              Keep it special
+              Want to Get a Job?
             </h1>
             <p className="text-3xl my-4">
-              Capture your personal memory in unique way, anywhere.
+              Find the best job for yourself
             </p>
+           
+            <Link href="/signup" type="button" className="
+            bg-white px-5 py-3
+            text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-lg  text-center mr-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800 w-96">Get a job</Link>
           </div>
         </div>
         <div className="lg:w-1/2 w-full flex items-center justify-center text-center md:px-16 px-0 z-0 bg-[#161616]">
@@ -238,6 +246,7 @@ export default function Page() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

@@ -1,8 +1,8 @@
 "use client";
 import { styled, Container, Box } from "@mui/material";
 import React, { useState } from "react";
-import Header from "@/app/dashboard/(DashboardLayout)/layout/header/Header";
-import Sidebar from "@/app/dashboard/(DashboardLayout)/layout/sidebar/Sidebar";
+import Header from "@/app/userDashboard/(DashboardLayout)/layout/header/Header";
+import Sidebar from "@/app/userDashboard/(DashboardLayout)/layout/sidebar/Sidebar";
 import Footer from "./layout/footer/page";
 
 const MainWrapper = styled("div")(() => ({

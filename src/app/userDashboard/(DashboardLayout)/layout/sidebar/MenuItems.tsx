@@ -16,68 +16,22 @@ const Menuitems = [
     id: uniqueId(),
     title: "Profile",
     icon: IconUserCircle,
-    href: "/dashboard/profile",
+    href: "/userDashboard/profile",
   },
   {
     id: uniqueId(),
-    title: "Post Job",
+    title: "Job",
     icon: IconAddressBook,
-    href: "/dashboard/postJob",
-  },
-  {
-    id: uniqueId(),
-    title: "View Posted Job",
-    icon: IconEyeTable,
-    href: "/dashboard/postedJob",
+    href: "/userDashboard/jobs",
   },
   {
     id: uniqueId(),
     title: "Logout",
     icon: IconLogout2,
-    href: "/dashboard/logout",
+    href: "/userDashboard/logout",
   },
-  {
-    id: uniqueId(),
-    title: "Buttons",
-    icon: IconCircleDot,
-    href: "/dashboard/ui-components/buttons",
-  },
-  {
-    id: uniqueId(),
-    title: "Forms",
-    icon: IconTable,
-    href: "/dashboard/ui-components/forms",
-  },
-  {
-    id: uniqueId(),
-    title: "Alerts",
-    icon: IconInfoCircle,
-    href: "/dashboard/ui-components/alerts",
-  },
-  {
-    id: uniqueId(),
-    title: "Ratings",
-    icon: IconStar,
-    href: "/dashboard/ui-components/ratings",
-  },
-  {
-    id: uniqueId(),
-    title: "Images",
-    icon: IconPhoto,
-    href: "/dashboard/ui-components/images",
-  },
-  {
-    id: uniqueId(),
-    title: "Pagination",
-    icon: IconUser,
-    href: "/dashboard/ui-components/pagination",
-  },
-  {
-    id: uniqueId(),
-    title: "Tables",
-    icon: IconLayoutGrid,
-    href: "/dashboard/ui-components/table",
-  },
+ 
+ 
 ];
 
 export default Menuitems;
