@@ -28,6 +28,7 @@ export async function POST(request:NextRequest){
             return NextResponse.json({error:"Invalid Password "},{status:400})
         }
 
+        const isUser = user.isUser;
 
         // =========TOKEN=============
 
@@ -35,7 +36,7 @@ export async function POST(request:NextRequest){
         const tokenData={
             id: user._id,
             username: user.username,
-            email: user.email
+            email: user.email,
         }
 
         // Create a new token
@@ -44,10 +45,13 @@ export async function POST(request:NextRequest){
         const response = NextResponse.json({
             message: 'Login successfully',
             success: true,
-            userId: tokenData.id
+            userId: tokenData.id,
         })
 
         response.cookies.set("token", token,{
+            httpOnly: true
+        })
+        response.cookies.set("isUser", isUser,{
             httpOnly: true
         })
 

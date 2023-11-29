@@ -34,6 +34,10 @@ const employerSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
+    isEmployer: {
+        type: Boolean,
+        default: true,
+    },
     forgotPasswordToken: String,
     forgotPasswordTokenExpiry: Date,
     verifyToken: String,

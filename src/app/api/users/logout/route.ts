@@ -12,6 +12,15 @@ export async function GET(){
             httpOnly: true,
             expires: new Date(0)
         })
+        response.cookies.set("isUser", "",{
+            httpOnly: true,
+            expires: new Date(0)
+        })
+        response.cookies.set("isEmployer", "",{
+            httpOnly: true,
+            expires: new Date(0)
+        })
+        
 
         return response;
 

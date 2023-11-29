@@ -20,12 +20,11 @@ const Hero = () => {
           Your Job.
         </strong>
       </h1>
-
+    
       <p className="mt-4 max-w-lg sm:text-xl/relaxed">
         Your Job Search Ends Here
       </p>
 
-  
       <div className="mt-8 flex flex-wrap gap-4 text-center">
         <a
           href="#"
@@ -39,9 +38,11 @@ const Hero = () => {
           className="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-indigo-600 shadow hover:text-indigo-700 focus:outline-none focus:ring active:text-indigo-500 sm:w-auto"
         >
           Learn More
+  
         </a>
       </div>
-    </div>
+       
+  </div>
   </div>
 </section>
     </div>

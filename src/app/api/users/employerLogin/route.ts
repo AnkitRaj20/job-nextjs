@@ -28,6 +28,7 @@ export async function POST(request:NextRequest){
             return NextResponse.json({error:"Invalid Password "},{status:400})
         }
 
+        const isEmployer = employer.isEmployer;
 
         // =========TOKEN=============
 
@@ -48,6 +49,9 @@ export async function POST(request:NextRequest){
         })
 
         response.cookies.set("token", token,{
+            httpOnly: true
+        })
+        response.cookies.set("isEmployer", isEmployer,{
             httpOnly: true
         })
 
