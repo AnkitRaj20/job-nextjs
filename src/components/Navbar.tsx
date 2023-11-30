@@ -3,9 +3,9 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <div className="shadow-lg shadow-indigo-500/40">
+    <div className="shadow-lg sticky  shadow-indigo-500/40">
     <header className="text-gray-600 bg-white body-font ">
-      <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+      <div className="container justify-between mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
         <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +24,7 @@ const Navbar = () => {
         <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center font-bold">
           <Link href="/" className="mr-5 hover:text-green-500 hover:underline">
           Home</Link>
-          <Link href="/" className="mr-5 hover:text-green-500 hover:underline">
+          <Link href="/about" className="mr-5 hover:text-green-500 hover:underline">
           About</Link>
           <Link href="/" className="mr-5 hover:text-green-500 hover:underline">
           Services</Link>

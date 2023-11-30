@@ -35,7 +35,7 @@ const postJobSchema = new mongoose.Schema({
         required: [true,"Please provide job type "]
     }
 
-})
+},{timestamps: true})
 
 const PostJobs = mongoose.models.postJobs || mongoose.model("postJobs", postJobSchema);
 

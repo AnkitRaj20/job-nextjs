@@ -62,7 +62,7 @@ export default function LoginPage() {
               className="text-center text-4xl text-indigo-900 font-display font-semibold lg:text-left xl:text-5xl
                     xl:text-bold"
             >
-              {loading ? "Processing" : "Login"}
+              {loading ? <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-violet-400 justify-center text-center"></div> : "Login"}
             </h2>
             <div className="mt-12">
               <form method="POST">

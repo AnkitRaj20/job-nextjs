@@ -49,7 +49,8 @@ const Sidebar = ({
             py={2}
           >
             <Box px={2}>
-              <Logo />
+              {/* <Logo /> */}
+              <h1 className="text-center font-extrabold text-indigo-500 py-5">DASHBOARD</h1>
             </Box>
             <Box>
               {/* ------------------------------------------- */}

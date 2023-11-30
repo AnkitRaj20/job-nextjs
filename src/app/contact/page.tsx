@@ -44,6 +44,8 @@
 //     )
 // }
 
+import Footer from '@/components/Footer'
+import Navbar from '@/components/Navbar'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -54,6 +56,7 @@ export const metadata: Metadata = {
 export default function ContactPage(){
     return(
         <>
+        <Navbar />
         <section className="min-h-screen bg-cover bg-[url('https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')] " >
     <div className="flex flex-col min-h-screen bg-black/60">
         <div className="container flex flex-col flex-1 px-6 py-12 mx-auto">
@@ -139,6 +142,7 @@ export default function ContactPage(){
         </div>
     </div>
 </section>
+<Footer />
         </>
     )
 }
