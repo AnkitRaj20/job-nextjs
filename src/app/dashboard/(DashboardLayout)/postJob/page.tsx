@@ -20,6 +20,7 @@ import React, { useEffect, useState } from "react";
 const page = () => {
   const [data, setData] = useState({
     employerId: "",
+    employerName: "",
     role: "",
     location: "",
     education: "",
@@ -32,7 +33,11 @@ const page = () => {
   const getUserDetails = async () => {
     const response = await axios.get("/api/users/userData");
     console.log(response.data);
-    setData({ ...data, employerId: response.data.data._id });
+    setData({
+      ...data,
+      employerId: response.data.data._id,
+      employerName: response.data.data.firstName+" "+response.data.data.middleName+" "+response.data.data.lastName
+    });
   };
 
   useEffect(() => {

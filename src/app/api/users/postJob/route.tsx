@@ -8,7 +8,7 @@ connect();
 export async function POST(request: NextRequest) {
     try {
         const reqBody = await request.json();
-        const {employerId,role,location,education,experience,salary,mobile,english,jobType} = reqBody
+        const {employerId,employerName,role,location,education,experience,salary,mobile,english,jobType} = reqBody
 
         console.log(reqBody);
         
@@ -26,6 +26,7 @@ export async function POST(request: NextRequest) {
 
         const newJob = new PostJob({
             employerId,
+            employerName,
             role,
             location,
             education,

@@ -5,6 +5,10 @@ const postJobSchema = new mongoose.Schema({
         type: String,
         required: [true, "Please provide your employer id"],
     },
+    employerName: {
+        type: String,
+        required: [true, "Please provide your employer name"],
+    },
     role: {
         type: String,
         required: [true, "Please provide job role"],
