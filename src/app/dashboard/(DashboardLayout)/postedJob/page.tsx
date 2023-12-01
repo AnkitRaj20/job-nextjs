@@ -3,19 +3,52 @@ import React, { useEffect, useState } from "react";
 import { connect } from "@/dbConfig/dbConfig";
 import axios from "axios";
 import { IconTrash, IconPencil } from "@tabler/icons-react";
+import {
+  Grid,
+  TextField,
+  FormControlLabel,
+  RadioGroup,
+  Radio,
+  FormLabel,
+  FormControl,
+  Button,
+  Box,
+} from "@mui/material";
 
 connect();
 
 const page = () => {
   const [id, setId] = useState("");
-  const [name, setName] = useState("")
+  const [name, setName] = useState("");
   const [data, setData] = useState([]);
+  const [showModal, setShowModal] = React.useState({
+    visible: false,
+    id: "",
+    employerId: ""
+  });
+  const [updateData, setUpdateData] = useState({
+    id: "",
+    role: "",
+    location: "",
+    education: "",
+    experience: "",
+    salary: "",
+    mobile: "",
+    english: "",
+    jobType: "",
+  })
 
   const getUserDetails = async () => {
     const response = await axios.get("/api/users/userData");
     console.log(response.data.data);
     setId(response.data.data._id);
-    setName(response.data.data.firstName+" "+response.data.data.middleName+" "+response.data.data.lastName)
+    setName(
+      response.data.data.firstName +
+        " " +
+        response.data.data.middleName +
+        " " +
+        response.data.data.lastName
+    );
   };
   console.log(data);
 
@@ -27,6 +60,7 @@ const page = () => {
       });
       console.log("Success", response.data.data);
       setData(response.data.data);
+      
     } catch (error: any) {
       console.log(error.response.data.error);
       // toast.error(error.response.data.error);
@@ -39,8 +73,6 @@ const page = () => {
   useEffect(() => {
     fetchData();
   }, [id]);
-  
-  
 
   const deleteIcon = async (id: any) => {
     if (confirm("Are you sure you want to delete this item?" + id) == true) {
@@ -60,15 +92,23 @@ const page = () => {
     }
   };
 
-   // Update the profile
-   const update = async () => {
+  const update = async(modal: any) => {
+    alert("Modal" + modal.id+"\nemployerid::"+modal.employerId);
+    console.log("update");
+    setShowModal({
+      ...showModal,
+      visible: false,
+    });
+
     try {
-      const response = await axios.post("/api/users/updatePostedJobData", { data });
+      const response = await axios.post("/api/users/updatePostedJobData", { updateData,modal});
       console.log(response);
+      fetchData();
     } catch (error: any) {
       console.log(error.response.data.error);
     }
   };
+
   return (
     <div className="bg-white">
       <section className="text-gray-600 body-font">
@@ -166,7 +206,15 @@ const page = () => {
                             type="button"
                             className="p-2 hover:bg-green-600 rounded-full hover:text-white"
                           >
-                            <IconPencil/>
+                            <IconPencil
+                              onClick={() =>
+                                setShowModal({
+                                  id: item._id,
+                                  visible: true,
+                                  employerId: item.employerId,
+                                })
+                              }
+                            />
                           </button>
                         </div>
                         <div className="flex space-x-2 text-sm text-gray-600">
@@ -174,7 +222,6 @@ const page = () => {
                             aria-label="Bookmark this post"
                             type="button"
                             className="p-2 hover:bg-red-600 rounded-full hover:text-white"
-                            
                           >
                             <IconTrash onClick={() => deleteIcon(item._id)} />
                           </button>
@@ -204,6 +251,191 @@ const page = () => {
           )}
         </div>
       </section>
+
+      {/* Modal */}
+      <>
+        {showModal.visible ? (
+          <>
+            <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none ">
+              <div className="relative w-auto my-6 mx-auto max-w-3xl mt-32">
+                {/*content*/}
+                <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                  {/*header*/}
+                  <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
+                    <h3 className="text-3xl font-semibold">Update Job</h3>
+                  </div>
+                  {/*body*/}
+                  <div className="relative p-6 flex-auto">
+                    <div>
+                      <Grid container spacing={3}>
+                        <Grid item xs={12} lg={12}>
+                          <Box
+                            component="form"
+                            sx={{
+                              "& .MuiTextField-root": { m: 1.8, width: "30ch" },
+                            }}
+                            noValidate
+                            autoComplete="off"
+                          >
+                            <div>
+                              
+                              <TextField
+                                required
+                                id="role"
+                                label="Role"
+                                value={updateData.role}
+                                onChange={(e) => {
+                                  setUpdateData({
+                                    ...updateData,
+                                    role: e.target.value,
+                                  });
+                                }}
+                              />
+                              <TextField
+                                required
+                                id="location"
+                                label="Location"
+                                value={updateData.location}
+                                onChange={(e) => {
+                                  setUpdateData({
+                                    ...updateData,
+                                    location: e.target.value,
+                                  });
+                                }}
+                              />
+                              <TextField
+                                id="minEducation"
+                                label="Minimum Education"
+                                value={updateData.education}
+                                onChange={(e) => {
+                                  setUpdateData({
+                                    ...updateData,
+                                    education: e.target.value,
+                                  });
+                                }}
+                              />
+
+                              
+                                <TextField
+                                  id="experience"
+                                  label="Experience"
+                                  variant="outlined"
+                                  value={updateData.experience}
+                                  onChange={(e) => {
+                                    setUpdateData({
+                                      ...updateData,
+                                      experience: e.target.value,
+                                    });
+                                  }}
+                                />
+                                <TextField
+                                  required
+                                  id="salary"
+                                  label="Salary"
+                                  variant="outlined"
+                                  value={updateData.salary}
+                                  onChange={(e) => {
+                                    setUpdateData({
+                                      ...updateData,
+                                      salary: e.target.value,
+                                    });
+                                  }}
+                                />
+                                <TextField
+                                  required
+                                  id="standard-number"
+                                  label="Mobile Number"
+                                  type="number"
+                                  value={updateData.mobile}
+                                  onChange={(e) => {
+                                    setUpdateData({
+                                      ...updateData,
+                                      mobile: e.target.value,
+                                    });
+                                  }}
+                                />
+                                <TextField
+                                  id="english"
+                                  label="English"
+                                  variant="outlined"
+                                  value={updateData.english}
+                                  onChange={(e) => {
+                                    setUpdateData({
+                                      ...updateData,
+                                      english: e.target.value,
+                                    });
+                                  }}
+                                />
+
+                                <FormControl>
+                                  <FormLabel id="demo-radio-buttons-group-label">
+                                    Job Type
+                                  </FormLabel>
+                                  <RadioGroup
+                                    row
+                                    aria-labelledby="demo-radio-buttons-group-label"
+                                    defaultValue="full"
+                                    name="radio-buttons-group"
+                                    onChange={(e) => {
+                                      setUpdateData({
+                                        ...updateData,
+                                        jobType: e.target.value,
+                                      });
+                                    }}
+                                  >
+                                    <FormControlLabel
+                                      value="Full Time"
+                                      control={<Radio />}
+                                      label="Full Time"
+                                    />
+                                    <FormControlLabel
+                                      value="Part Time"
+                                      control={<Radio />}
+                                      label="Part Time"
+                                    />
+                                    <FormControlLabel
+                                      value="Both Full Time and Part Time"
+                                      control={<Radio />}
+                                      label="Both Full Time and Part Time"
+                                    />
+                                  </RadioGroup>
+                                </FormControl>
+                              </div>
+                           
+                          </Box>
+                        </Grid>
+                      </Grid>
+                    </div>
+                  </div>
+                  {/*footer*/}
+                  <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+                    <button
+                      className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                      type="button"
+                      onClick={() =>
+                        setShowModal({
+                          ...showModal,
+                          visible: false,
+                        })
+                      }
+                    >
+                      Close
+                    </button>
+                    <button
+                      className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                      type="button"
+                      onClick={() => update(showModal)}
+                    >
+                      Update
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+          </>
+        ) : null}
+      </>
     </div>
   );
 };

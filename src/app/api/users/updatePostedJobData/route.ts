@@ -7,8 +7,8 @@ connect();
 export async function POST(request:NextRequest){
     try {
         const reqBody = await request.json();
-
-        const {id,employerId, role,location,education,experience,english,mobile,salary,jobType} = reqBody.data;
+        const {id,employerId} = reqBody.modal;
+        const { role,location,education,experience,english,mobile,salary,jobType} = reqBody.updateData;
         console.log("id::"+{id})
 
         // Checks if user exsits or not
