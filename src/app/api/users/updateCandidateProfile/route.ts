@@ -8,7 +8,7 @@ export async function POST(request:NextRequest){
     try {
         const reqBody = await request.json();
 
-        const {email, firstName,middleName,lastName,mobile} = reqBody.data;
+        const {email, firstName,middleName,lastName,mobile,address} = reqBody.data;
         console.log("email::"+{email})
 
         // Checks if user exsits or not
@@ -24,6 +24,7 @@ export async function POST(request:NextRequest){
         user.middleName = middleName
         user.lastName = lastName
         user.mobile = mobile
+        user.address = address
         await user.save();
 
         return NextResponse.json({

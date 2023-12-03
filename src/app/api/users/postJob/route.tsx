@@ -40,13 +40,7 @@ export async function POST(request: NextRequest) {
         const savedJob = await newJob.save();
         console.log(savedJob)
         
-        // Send verification email
-        // await sendEmail({
-        //     email,
-        //     emailType: 'VERIFY',
-        //     userId: savedUser._id
-        // })
-
+      
         return NextResponse.json({
             message: 'Job Posted successfully',
             success: true,

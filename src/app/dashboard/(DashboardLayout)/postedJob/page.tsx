@@ -24,7 +24,7 @@ const page = () => {
   const [showModal, setShowModal] = React.useState({
     visible: false,
     id: "",
-    employerId: ""
+    employerId: "",
   });
   const [updateData, setUpdateData] = useState({
     id: "",
@@ -36,7 +36,7 @@ const page = () => {
     mobile: "",
     english: "",
     jobType: "",
-  })
+  });
 
   const getUserDetails = async () => {
     const response = await axios.get("/api/users/userData");
@@ -60,7 +60,6 @@ const page = () => {
       });
       console.log("Success", response.data.data);
       setData(response.data.data);
-      
     } catch (error: any) {
       console.log(error.response.data.error);
       // toast.error(error.response.data.error);
@@ -92,8 +91,7 @@ const page = () => {
     }
   };
 
-  const update = async(modal: any) => {
-    alert("Modal" + modal.id+"\nemployerid::"+modal.employerId);
+  const update = async (modal: any) => {
     console.log("update");
     setShowModal({
       ...showModal,
@@ -101,7 +99,11 @@ const page = () => {
     });
 
     try {
-      const response = await axios.post("/api/users/updatePostedJobData", { updateData,modal,name:name});
+      const response = await axios.post("/api/users/updatePostedJobData", {
+        updateData,
+        modal,
+        name: name,
+      });
       console.log(response);
       fetchData();
     } catch (error: any) {
@@ -132,7 +134,7 @@ const page = () => {
               {data.map((item: any) => {
                 return (
                   <div key={item._id} className="m-5 shadow-2xl">
-                    <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-2xl bg-gray-50 text-gray-800 ">
+                    <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden capitalize rounded-lg shadow-2xl bg-gray-50 text-gray-800 ">
                       <div className="flex space-x-4">
                         <img
                           alt=""
@@ -156,7 +158,7 @@ const page = () => {
                         {/* <img src="https://source.unsplash.com/random/100x100/?5" alt="" className="object-cover w-full mb-4 h-60 sm:h-96 bg-gray-500" /> */}
 
                         <span className="inline-block py-1 px-2 rounded bg-indigo-50 text-indigo-700 text-lg font-bold tracking-widest mb-2">
-                          ROLE: {item.role}{" "}
+                          ROLE: {item.role}
                         </span>
 
                         <h2 className="mb-1 text-xl font-semibold">
@@ -168,15 +170,17 @@ const page = () => {
                         </p>
 
                         <p className="leading-relaxed text-base font-medium">
-                          Education:{item.education}{" "}
+                          Education:{item.education}
                         </p>
                         <p className="leading-relaxed  font-medium">
-                          Experience:{item.experience}{" "}
+                          Experience:{item.experience}
+                        </p>
+                        <p className="leading-relaxed  font-medium">
+                          English:{item.english}
                         </p>
                         <p className="mt-1 leading-relaxed font-medium">
                           Salary:₹{item.salary}
                         </p>
-                        {/* <p className="text-sm text-gray-600">Eu qualisque aliquando mel, id lorem detraxit nec, ad elit minimum pri. Illum ipsum detracto ne cum. Mundi nemore te ius, vim ad illud atqui apeirian...</p> */}
 
                         <div className="flex items-center flex-wrap ">
                           <a className="text-indigo-600 inline-flex items-center mt-2 md:mb-2 lg:mb-0 font-medium">
@@ -194,7 +198,7 @@ const page = () => {
                               <path d="M12 5l7 7-7 7"></path>
                             </svg>
                             <p className="leading-relaxed text-base">
-                              {item.mobile}{" "}
+                              {item.mobile}
                             </p>
                           </a>
                         </div>
@@ -278,7 +282,6 @@ const page = () => {
                             autoComplete="off"
                           >
                             <div>
-                              
                               <TextField
                                 required
                                 id="role"
@@ -315,93 +318,91 @@ const page = () => {
                                 }}
                               />
 
-                              
-                                <TextField
-                                  id="experience"
-                                  label="Experience"
-                                  variant="outlined"
-                                  value={updateData.experience}
-                                  onChange={(e) => {
-                                    setUpdateData({
-                                      ...updateData,
-                                      experience: e.target.value,
-                                    });
-                                  }}
-                                />
-                                <TextField
-                                  required
-                                  id="salary"
-                                  label="Salary"
-                                  variant="outlined"
-                                  value={updateData.salary}
-                                  onChange={(e) => {
-                                    setUpdateData({
-                                      ...updateData,
-                                      salary: e.target.value,
-                                    });
-                                  }}
-                                />
-                                <TextField
-                                  required
-                                  id="standard-number"
-                                  label="Mobile Number"
-                                  type="number"
-                                  value={updateData.mobile}
-                                  onChange={(e) => {
-                                    setUpdateData({
-                                      ...updateData,
-                                      mobile: e.target.value,
-                                    });
-                                  }}
-                                />
-                                <TextField
-                                  id="english"
-                                  label="English"
-                                  variant="outlined"
-                                  value={updateData.english}
-                                  onChange={(e) => {
-                                    setUpdateData({
-                                      ...updateData,
-                                      english: e.target.value,
-                                    });
-                                  }}
-                                />
+                              <TextField
+                                id="experience"
+                                label="Experience"
+                                variant="outlined"
+                                value={updateData.experience}
+                                onChange={(e) => {
+                                  setUpdateData({
+                                    ...updateData,
+                                    experience: e.target.value,
+                                  });
+                                }}
+                              />
+                              <TextField
+                                required
+                                id="salary"
+                                label="Salary"
+                                variant="outlined"
+                                value={updateData.salary}
+                                onChange={(e) => {
+                                  setUpdateData({
+                                    ...updateData,
+                                    salary: e.target.value,
+                                  });
+                                }}
+                              />
+                              <TextField
+                                required
+                                id="standard-number"
+                                label="Mobile Number"
+                                type="number"
+                                value={updateData.mobile}
+                                onChange={(e) => {
+                                  setUpdateData({
+                                    ...updateData,
+                                    mobile: e.target.value,
+                                  });
+                                }}
+                              />
+                              <TextField
+                                id="english"
+                                label="English"
+                                variant="outlined"
+                                value={updateData.english}
+                                onChange={(e) => {
+                                  setUpdateData({
+                                    ...updateData,
+                                    english: e.target.value,
+                                  });
+                                }}
+                              />
 
-                                <FormControl>
-                                  <FormLabel id="demo-radio-buttons-group-label">
-                                    Job Type
-                                  </FormLabel>
-                                  <RadioGroup
-                                    row
-                                    aria-labelledby="demo-radio-buttons-group-label"
-                                    defaultValue="full"
-                                    name="radio-buttons-group"
-                                    onChange={(e) => {
-                                      setUpdateData({
-                                        ...updateData,
-                                        jobType: e.target.value,
-                                      });
-                                    }}
-                                  >
-                                    <FormControlLabel
-                                      value="Full Time"
-                                      control={<Radio />}
-                                      label="Full Time"
-                                    />
-                                    <FormControlLabel
-                                      value="Part Time"
-                                      control={<Radio />}
-                                      label="Part Time"
-                                    />
-                                    <FormControlLabel
-                                      value="Both Full Time and Part Time"
-                                      control={<Radio />}
-                                      label="Both Full Time and Part Time"
-                                    />
-                                  </RadioGroup>
-                                </FormControl>
-                              </div>
-                           
+                              <FormControl>
+                                <FormLabel id="demo-radio-buttons-group-label">
+                                  Job Type
+                                </FormLabel>
+                                <RadioGroup
+                                  row
+                                  aria-labelledby="demo-radio-buttons-group-label"
+                                  defaultValue="full"
+                                  name="radio-buttons-group"
+                                  onChange={(e) => {
+                                    setUpdateData({
+                                      ...updateData,
+                                      jobType: e.target.value,
+                                    });
+                                  }}
+                                >
+                                  <FormControlLabel
+                                    value="Full Time"
+                                    control={<Radio />}
+                                    label="Full Time"
+                                  />
+                                  <FormControlLabel
+                                    value="Part Time"
+                                    control={<Radio />}
+                                    label="Part Time"
+                                  />
+                                  <FormControlLabel
+                                    value="Both Full Time and Part Time"
+                                    control={<Radio />}
+                                    label="Both Full Time and Part Time"
+                                  />
+                                </RadioGroup>
+                              </FormControl>
+                            </div>
                           </Box>
                         </Grid>
                       </Grid>

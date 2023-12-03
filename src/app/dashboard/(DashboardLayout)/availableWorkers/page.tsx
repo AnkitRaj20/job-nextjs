@@ -1,19 +1,15 @@
+// TODO: Add search button and handle search button
 "use client";
-import React, { useEffect, useState } from "react";
-import { connect } from "@/dbConfig/dbConfig";
 import axios from "axios";
-import Link from "next/link";
-
-connect();
+import  { useEffect, useState } from "react";
 
 const page = () => {
   const [search, setSearch] = useState("");
   const [data, setData] = useState([]);
-  const [name, setName] = useState("");
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("/api/users/getJob");
+      const response = await axios.get("/api/users/getUserProfile");
       console.log("Success", response.data.data);
       setData(response.data.data);
     } catch (error: any) {
@@ -26,26 +22,6 @@ const page = () => {
     fetchData();
   }, []);
 
-  const searchButton = async (e: any) => {
-    e.preventDefault();
-    console.log("search::" + search);
-    try {
-      if (search === "") {
-        fetchData();
-        return;
-      }
-      const response = await axios.post("/api/users/getJobByTitle", {
-        role: search,
-      });
-      console.log("Success", response.data.data);
-
-      setData(response.data.data);
-    } catch (error: any) {
-      console.log(error.response.data.error);
-      // toast.error(error.response.data.error);
-    }
-  };
-
   return (
     <div className="bg-white">
       <section className="text-gray-600 body-font">
@@ -53,7 +29,7 @@ const page = () => {
           <div className="flex flex-wrap w-full mb-20">
             <div className="lg:w-1/2 w-full mb-6 lg:mb-0">
               <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
-                Find jobs that are suitable for you
+                Find profiles that are suitable for you
               </h1>
               <div className="h-1 w-20 bg-indigo-500 rounded"></div>
             </div>
@@ -97,7 +73,8 @@ const page = () => {
                 required
               />
               <button
-                onClick={searchButton}
+              // TODO: Handle search button
+                // onClick={searchButton}
                 type="submit"
                 className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
@@ -108,10 +85,10 @@ const page = () => {
 
           {data.length > 0 ? (
             <div className="flex flex-wrap -m-4">
-              {data.map((item: any) => {
+             {data.map((item: any) => {
                 return (
                   <div key={item._id} className=" m-5 shadow-2xl">
-                    <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg  capitalize shadow-2xl bg-gray-50 text-gray-800 ">
+                    <div className="flex flex-col max-w-lg p-6 space-y-6 space-x-5 overflow-hidden rounded-lg capitalize shadow-2xl bg-gray-50 text-gray-800 ">
                       <div className="flex space-x-4 w-72">
                         <img
                           alt=""
@@ -124,7 +101,7 @@ const page = () => {
                             href="#"
                             className="text-sm font-semibold"
                           >
-                            {item.employerName}
+                            {item.userName}
                           </a>
                           {/* <span className="text-xs text-gray-600">
                            4 hours ago
@@ -139,7 +116,7 @@ const page = () => {
                         </span>
 
                         <h2 className="mb-1 text-xl font-semibold">
-                          Location: {item.location}
+                          Location: {item.address}
                         </h2>
 
                         <p className="font-semibold text-gray-600">
@@ -154,6 +131,9 @@ const page = () => {
                         </p>
                         <p className="leading-relaxed  font-medium">
                           English:{item.english}
+                        </p>
+                        <p className="leading-relaxed  font-medium">
+                          Gender:{item.gender}
                         </p>
                         <p className="mt-1 leading-relaxed font-medium">
                           Salary:₹{item.salary}
