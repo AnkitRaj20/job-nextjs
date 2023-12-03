@@ -32,6 +32,12 @@ const Menuitems = [
   },
   {
     id: uniqueId(),
+    title: "View Job Workers",
+    icon: IconEyeTable,
+    href: "/dashboard/availableWorkers"
+  },
+  {
+    id: uniqueId(),
     title: "Logout",
     icon: IconLogout2,
     href: "/dashboard/logout",

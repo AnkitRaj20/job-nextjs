@@ -101,7 +101,7 @@ const page = () => {
     });
 
     try {
-      const response = await axios.post("/api/users/updatePostedJobData", { updateData,modal});
+      const response = await axios.post("/api/users/updatePostedJobData", { updateData,modal,name:name});
       console.log(response);
       fetchData();
     } catch (error: any) {

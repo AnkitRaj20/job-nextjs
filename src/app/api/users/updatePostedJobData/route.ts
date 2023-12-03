@@ -9,7 +9,9 @@ export async function POST(request:NextRequest){
         const reqBody = await request.json();
         const {id,employerId} = reqBody.modal;
         const { role,location,education,experience,english,mobile,salary,jobType} = reqBody.updateData;
+        const {name} = reqBody
         console.log("id::"+{id})
+        console.log("name::"+name)
 
         // Checks if user exsits or not
         const job = await Job.findOne({_id:id})
@@ -20,6 +22,7 @@ export async function POST(request:NextRequest){
 
         // Updating the details
         job.employerId = employerId
+        job.employerName = name
         job.role = role
         job.location = location
         job.education = education
