@@ -22,6 +22,26 @@ const page = () => {
     fetchData();
   }, []);
 
+  const searchButton = async (e: any) => {
+    e.preventDefault();
+    console.log("search::" + search);
+    try {
+      if (search === "") {
+        fetchData();
+        return;
+      }
+      const response = await axios.post("/api/users/getProfileByTitle", {
+        role: search,
+      });
+      console.log("Success", response.data.data);
+
+      setData(response.data.data);
+    } catch (error: any) {
+      console.log(error.response.data.error);
+      // toast.error(error.response.data.error);
+    }
+  };
+
   return (
     <div className="bg-white">
       <section className="text-gray-600 body-font">
@@ -74,7 +94,7 @@ const page = () => {
               />
               <button
               // TODO: Handle search button
-                // onClick={searchButton}
+                onClick={searchButton}
                 type="submit"
                 className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
