@@ -26,6 +26,12 @@ const Menuitems = [
   },
   {
     id: uniqueId(),
+    title: "Posted Profile",
+    icon: IconAddressBook,
+    href: "/userDashboard/postedProfile",
+  },
+  {
+    id: uniqueId(),
     title: "Logout",
     icon: IconLogout2,
     href: "/userDashboard/logout",

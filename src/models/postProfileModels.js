@@ -4,6 +4,7 @@ const postProfileSchema = new mongoose.Schema({
     userId: {
         type: String,
         required: [true, "Please provide your user id"],
+        unique: true
     },
     userName: {
         type: String,

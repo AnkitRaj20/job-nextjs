@@ -8,6 +8,8 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
+import { useForm } from "react-hook-form";
+
 export default function Page() {
   const router = useRouter();
   const [buttonDisabled, setButtonDisabled] = useState(false);
@@ -23,58 +25,26 @@ export default function Page() {
     mobile: ""
   });
 
-  const onSignup = async (e: any) => {
-    e.preventDefault();
-    // console.log(user)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = async(data: any) => {
     try {
       setLoading(true);
-      const response = await axios.post("/api/users/employerSignup", user);
+      const response = await axios.post("/api/users/employerSignup", data);
       console.log("Signup success", response.data);
+      // toast.success("Signup success");
       toast.success("Signup success");
       router.push("/employerLogin");
     } catch (error: any) {
       console.log("Signup failed", error.response.data.error);
-      toast.error(error.response.data.error);
+      // toast.error(error.response.data.error);
     } finally {
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    if (user.password !== user.confirmPassword) {
-      setPasswordError("Passwords do not match");
-    //   toast('Here is your toast.');
-      setButtonDisabled(true);
-      return;
-    }
-    if(user.firstName.length <3 || user.firstName.length > 20){
-        setButtonDisabled(true);
-        return;
-      }
-    if(user.lastName.length <3 || user.lastName.length > 20){
-        setButtonDisabled(true);
-        return;
-      }
-    if(user.email.length <3 ){ 
-        setButtonDisabled(true);
-        return;
-      }
-     
-    
-    
-  }, [user]);
-
-  useEffect(() => {
-    if (user.password.length > 0 && user.confirmPassword.length > 0) {
-      if (user.password !== user.confirmPassword) {
-        setPasswordError("Passwords do not match");
-        setButtonDisabled(true);
-      } else {
-        setPasswordError("");
-        setButtonDisabled(false);
-      }
-    }
-  }, [user.password, user.confirmPassword]);
 
   return (
     <div>
@@ -104,143 +74,139 @@ export default function Page() {
             <h1 className="my-6 text-4xl">
               {loading ? "Processing" : "Create New Account"}
             </h1>
-            <form action="" method="POST" className=" w-full px-4 lg:px-0 mx-auto">
+            <form  method="POST" className=" w-full px-4 lg:px-0 mx-auto"
+            onSubmit={handleSubmit(onSubmit)}>
               <div className="grid grid-cols-3 gap-4">
                 <div className="pb-2 pt-4">
-                  <input
-                    type="text"
-                    name="firstName"
-                    id="firstName"
-                    placeholder="First Name"
-                    value={user.firstName}
-                    onChange={(e) =>
-                      setUser({
-                        ...user,
-                        firstName: e.target.value,
-                      })
-                    }
+                <input
                     className="block w-full p-4 text-lg rounded-sm bg-black"
+                    type="text"
+                    placeholder="First name"
+                    {...register("firstName", {
+                      required: 'Enter First Name',
+                      maxLength : {
+                        value: 20,
+                        message: 'Enter First Name'
+                      }
+                    })}
+                  />
+                    
+                </div>
+                <div className="pb-2 pt-4">
+                <input
+                    className="block w-full p-4 text-lg rounded-sm bg-black"
+                    type="text"
+                    placeholder="middleName"
+                    {...register("middleName", {})}
                   />
                 </div>
                 <div className="pb-2 pt-4">
-                  <input
-                    type="text"
-                    name="middleName"
-                    id="middleName"
-                    placeholder="Middle Name"
-                    value={user.middleName}
-                    onChange={(e) =>
-                      setUser({
-                        ...user,
-                        middleName: e.target.value,
-                      })
-                    }
+                <input
                     className="block w-full p-4 text-lg rounded-sm bg-black"
-                  />
-                </div>
-                <div className="pb-2 pt-4">
-                  <input
                     type="text"
-                    name="lastName"
-                    id="lastName"
-                    placeholder="Last Name"
-                    value={user.lastName}
-                    onChange={(e) =>
-                      setUser({
-                        ...user,
-                        lastName: e.target.value,
-                      })
-                    }
-                    className="block w-full p-4 text-lg rounded-sm bg-black"
+                    placeholder="Last name"
+                    {...register("lastName", {
+                      required: 'Enter Last Name',
+                      maxLength : {
+                        value: 20,
+                        message: 'Enter Last Name'
+                      }
+                    })}
                   />
                 </div>
               </div>
+              <span className={errors.firstName ? "justify-between pb-1 flex flex-row" : "justify-end pb-1 flex flex-row"}>
+                {errors.firstName && <p className="bg-red-500 text-white  rounded w-1/3">{errors.firstName.message?.toString()}</p>}
+                {errors.lastName && <p className="bg-red-500 text-white  rounded w-1/3">{errors.lastName.message?.toString()}</p>}
+                </span>
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="pb-2 pt-4">
-                  <input
+                <input
+                    className="block w-full p-4 text-lg rounded-sm bg-black"
                     type="email"
-                    name="email"
-                    id="email"
                     placeholder="Email"
-                    value={user.email}
-                    onChange={(e) =>
-                      setUser({
-                        ...user,
-                        email: e.target.value,
-                      })
-                    }
-                    className="block w-full p-4 text-lg rounded-sm bg-black "
+                    {...register("email", {
+                      required: 'Enter valid email',
+                      pattern: {
+                        value: /\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b/i,
+                        message: 'Enter a valid email' 
+                      }
+                    })}
                   />
                 </div>
                 <div className="pb-2 pt-4">
-                  <input
-                    type="number"
-                    name="mobile"
-                    id="mobile"
-                    placeholder="Mobile Number"
-                    value={user.mobile}
-                    onChange={(e) =>
-                      setUser({
-                        ...user,
-                        mobile: e.target.value,
-                      })
-                    }
+                <input
                     className="block w-full p-4 text-lg rounded-sm bg-black"
+                    type="tel"
+                    placeholder="Mobile number"
+                    {...register("mobile", {
+                      required: 'Enter mobile number',
+                      validate:{
+                        value: (value) => value.length === 10,
+                      },
+                      pattern:{
+                        value: /^[6-9]\d{9}$/i,
+                        message: 'Enter a valid 10 digit mobile number'
+                      }
+                    })}
                   />
                 </div>
               </div>
-
+              <span className= {errors.email ? "justify-between pb-1 flex flex-row" : "justify-end pb-1 flex flex-row"}>
+                {errors.email && <p className="bg-red-500 text-white  rounded w-1/3">{errors.email.message?.toString()}</p>}
+                {errors.mobile && <p className="bg-red-500 text-white  rounded w-1/3">{errors.mobile.message?.toString()}</p>}
+                </span>
               
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="pb-2 pt-4">
-                  <input
+                <input
                     className="block w-full p-4 text-lg rounded-sm bg-black"
-                    type="password"
-                    name="password"
-                    id="password"
-                    placeholder="Password"
-                    value={user.password}
-                    onChange={(e) =>
-                      setUser({
-                        ...user,
-                        password: e.target.value,
-                      })
-                    }
+                    type="text"
+                    placeholder="password"
+                    {...register("password", { required: 'Enter Password',
+                      maxLength : {
+                        value: 12,
+                        message: 'Password Should less than 12 characters' 
+                      },
+                      minLength: {
+                        value: 8,
+                        message: 'Password should be greater than 8 characters'
+                      }
+                    })}
                   />
                 </div>
                 <div className="pb-2 pt-4">
-                  <input
+                <input
                     className="block w-full p-4 text-lg rounded-sm bg-black"
-                    type="password"
-                    name="confirmPassword"
-                    id="confirmPassword"
-                    value={user.confirmPassword}
-                    onChange={(e) =>
-                      setUser({
-                        ...user,
-                        confirmPassword: e.target.value,
-                      })
-                    }
+                    type="text"
                     placeholder="Confirm Password"
+                    {...register("confirmPassword", {
+                      required: 'Enter Confirm Password',
+                      maxLength : {
+                        value: 12,
+                        message: 'Password Should less than 12 characters' 
+                      },
+                      minLength: {
+                        value: 8,
+                        message: 'Password should be greater than 8 characters'
+                      }
+                    })}
                   />
                 </div>
               </div>
+              <span className={errors.password ? "justify-between pb-1 flex flex-row" : "justify-end pb-1 flex flex-row"}>
+                {errors.password && <p className="bg-red-500 text-white  rounded w-1/3">{errors.password.message?.toString()}</p>}
+                {errors.confirmPassword && <p className="bg-red-500 text-white  rounded w-1/3">{errors.confirmPassword.message?.toString()}</p>}
+                </span>
 
               <div className="px-4 pb-2 pt-4">
-                <button
-                  onClick={onSignup}
+              <input
+                  type="submit"
                   className="uppercase block w-full p-4 text-lg rounded-full bg-indigo-500 hover:bg-indigo-600 focus:outline-none
-                 
-                  disabled:opacity-50 
-                 
-                  disabled:cursor-not-allowed
-                  "
-                  disabled = {buttonDisabled}
-                >
-                  sign up
-                </button>
+                 "
+                />
               </div>
             </form>
           </div>

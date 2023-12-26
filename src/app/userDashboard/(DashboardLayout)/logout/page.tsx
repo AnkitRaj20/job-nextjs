@@ -7,8 +7,7 @@ const page = () => {
   const router = useRouter()
   const logout = async() => {
     await axios.get('/api/users/logout');
-    alert('logged out');
-    router.push('/login3');
+    router.push('/login');
 }
   useEffect(() => {
     logout();

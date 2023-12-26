@@ -5,8 +5,8 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
-import Navbar from '../../components/Navbar'
-import Footer from '../../components/Footer'
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -15,59 +15,61 @@ export default function LoginPage() {
     password: "",
   });
   const [buttonDisabled, setButtonDisabled] = useState(false);
-    const [loading, setLoading] = useState(false);
-    const [data, setData] = useState("")
- 
-    const onLogin = async (e:any) => {
-        e.preventDefault();
-        try {
-            setLoading(true);
-            const response = await axios.post("/api/users/login", user);
-            console.log("Login success", response.data.userId); 
-            setData(response.data.userId);
-            console.log("data",data)
-            toast.success("Login success");
-            // router.push(`/profile/${response.data.userId}`);
-            router.push(`/userDashboard/profile`);
-        } catch (error:any) {
-            console.log("Login failed", error);
-            toast.error(error.response.data.error);
-        } finally{
-        setLoading(false);
-        }
-    }
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState("");
 
-    useEffect(() => {
-        if(user.email.length > 0 && user.password.length > 0) {
-            setButtonDisabled(false);
-        } else{
-            setButtonDisabled(true);
-        }
-    }, [user]);
+  const onLogin = async (e: any) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      const response = await axios.post("/api/users/login", user);
+      console.log("Login success", response.data.userId);
+      setData(response.data.userId);
+      console.log("data", data);
+      toast.success("Login success");
+      // router.push(`/profile/${response.data.userId}`);
+      router.push(`/userDashboard/profile`);
+    } catch (error: any) {
+      console.log("Login failed", error);
+      toast.error(error.response.data.error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (user.email.length > 0 && user.password.length > 0) {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
+    }
+  }, [user]);
 
   return (
     <>
-    <Navbar />
-    <Toaster />
+      <Navbar />
+      <Toaster />
       <div className="lg:flex">
         <div className="lg:w-1/2 xl:max-w-screen-sm bg-white">
           <div className="py-12 bg-white lg:bg-white flex justify-center lg:justify-start lg:px-12">
             <div className="cursor-pointer flex items-center">
-                        {/* <div className="text-2xl text-indigo-800 tracking-wide ml-2 font-semibold">Are you an employer?</div> */}
-                        
-                    </div>
+              {/* <div className="text-2xl text-indigo-800 tracking-wide ml-2 font-semibold">Are you an employer?</div> */}
+            </div>
           </div>
           <div className="mt-10 bg-white px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
             <h2
               className="text-center text-4xl text-indigo-900 font-display font-semibold lg:text-left xl:text-5xl
                     xl:text-bold"
             >
-              {loading ? <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-violet-400 justify-center text-center"></div> : "Login"}
+              {loading ? (
+                <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-violet-400 justify-center text-center"></div>
+              ) : (
+                "Login"
+              )}
             </h2>
             <div className="mt-12">
               <form method="POST">
                 <div>
-              
                   <div className="text-sm font-bold text-gray-700 tracking-wide">
                     Email Address
                   </div>
@@ -92,7 +94,7 @@ export default function LoginPage() {
                     <div>
                       <a
                         className="text-xs font-display font-semibold text-indigo-600 hover:text-indigo-800
-                                        cursor-pointer"
+                        cursor-pointer"
                       >
                         Forgot Password?
                       </a>
@@ -114,9 +116,8 @@ export default function LoginPage() {
                 <div className="mt-10">
                   <button
                     className="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
-                                font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
-                                shadow-lg"
-                                onClick={onLogin}
+                    font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600 shadow-lg"
+                    onClick={onLogin}
                   >
                     Log In
                   </button>
@@ -124,7 +125,10 @@ export default function LoginPage() {
               </form>
               <div className="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
                 Don't have an account ?{" "}
-               <Link href="/signup" className="cursor-pointer text-indigo-600 hover:text-indigo-800"> 
+                <Link
+                  href="/signup"
+                  className="cursor-pointer text-indigo-600 hover:text-indigo-800"
+                >
                   Sign up
                 </Link>
               </div>

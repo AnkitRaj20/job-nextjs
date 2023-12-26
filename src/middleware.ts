@@ -6,7 +6,7 @@ export function middleware(request: NextRequest) {
     // Getting the pathname from the url
      const path = request.nextUrl.pathname;
 
-     const isPathPublic = path === '/login3' || path==="/signup"
+     const isPathPublic = path === '/login' || path==="/signup"
       || path === "/verifyemail"
       || path === "/employerLogin"
       || path === "/employerSignup"
@@ -50,7 +50,7 @@ export function middleware(request: NextRequest) {
     // Not Logged in
      if(!isPathPublic && !token){
         return NextResponse.redirect(new URL(
-            "/login3",
+            "/login",
             request.nextUrl
         ))
      }
@@ -63,7 +63,7 @@ export const config = {
     "/dashboard/:path*",
     "/userDashboard",
     "/userDashboard/:path*",
-    "/login3",
+    "/login",
     "/employerLogin",
     "/signup",
     "/employerSignup",

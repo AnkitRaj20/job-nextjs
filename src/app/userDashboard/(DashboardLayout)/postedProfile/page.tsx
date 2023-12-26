@@ -43,7 +43,7 @@ const page = () => {
   });
 
   const getUserDetails = async () => {
-    const response = await axios.get("/api/users/userData");
+    const response = await axios.get("/api/users/candidateData");
     console.log(response.data.data);
     setId(response.data.data._id);
     setName(
@@ -57,7 +57,7 @@ const page = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.post("/api/users/getPostedJobData", {
+      const response = await axios.post("/api/users/getPostedProfileData", {
         _id: id,
       });
       console.log("Success", response.data.data);
@@ -81,10 +81,8 @@ const page = () => {
       visible: false
     })
     const id = model.id;
-
-    
       try {
-        const response = await axios.post("/api/users/deletePostedJob", {
+        const response = await axios.post("/api/users/deletePostedProfile", {
           _id: id,
         });
         console.log("Success", response.data);
@@ -102,7 +100,7 @@ const page = () => {
     });
 
     try {
-      const response = await axios.post("/api/users/updatePostedJobData", {
+      const response = await axios.post("/api/users/updatePostedProfile", {
         updateData,
         modal,
         name: name,
@@ -121,7 +119,7 @@ const page = () => {
           <div className="flex flex-wrap w-full mb-20">
             <div className="lg:w-1/2 w-full mb-6 lg:mb-0">
               <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
-                Your Job Posted
+                Your Posted Profile
               </h1>
               <div className="h-1 w-20 bg-indigo-500 rounded"></div>
             </div>
@@ -165,7 +163,7 @@ const page = () => {
                         </span>
 
                         <h2 className="mb-1 text-xl font-semibold">
-                          Location: {item.location}
+                          Location: {item.address}
                         </h2>
 
                         <p className="font-semibold text-gray-600">
@@ -180,6 +178,9 @@ const page = () => {
                         </p>
                         <p className="leading-relaxed  font-medium">
                           English:{item.english}
+                        </p>
+                        <p className="leading-relaxed  font-medium">
+                          Gender:{item.gender}
                         </p>
                         <p className="mt-1 leading-relaxed font-medium">
                           Salary:₹{item.salary}
@@ -462,7 +463,7 @@ const page = () => {
                   {/*body*/}
                   <div className="relative p-6 flex-auto">
                     <div>
-                      Are you sure you want to delete this job?
+                      Are you sure you want to delete this Profile?
                     </div>
                   </div>
                   {/*footer*/}
