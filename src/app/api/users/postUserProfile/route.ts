@@ -26,14 +26,14 @@ export async function POST(request:NextRequest){
         const newProfile = new PostProfile({
             userId:id,
             userName:name,
-            role,
+            role:role.toLowerCase(),
             education,
             mobile,
             experience,
             salary,
             english,
-            jobType,
-            address,
+            jobType:jobType.toLowerCase(),
+            address:address.toLowerCase(),
             gender
         })
 

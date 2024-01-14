@@ -5,8 +5,8 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
-import Navbar from '../../components/Navbar'
-import Footer from '../../components/Footer'
+import Footer from '@/components/Footer'
+import Navbar from '@/components/Navbar2'
 
 export default function LoginPage() {
   const router = useRouter();
@@ -22,7 +22,7 @@ export default function LoginPage() {
         e.preventDefault();
         try {
             setLoading(true);
-            const response = await axios.post("/api/users/employerLogin", user);
+            const response = await axios.post("/api/provider/employerLogin", user);
             console.log("Login success", response.data.userId); 
             setData(response.data.userId);
             console.log("data",data)

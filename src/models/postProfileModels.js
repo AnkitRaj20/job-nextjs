@@ -13,10 +13,12 @@ const postProfileSchema = new mongoose.Schema({
     role: {
         type: String,
         required: [true, "Please provide job role"],
+        lowercase: true,
     },
     address: {
         type: String,
         required: [true, "Please provide job location"],
+        lowercase: true,
     },
     education: {
         type: String,

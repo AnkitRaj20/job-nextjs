@@ -15,6 +15,8 @@ import {
   Box,
 } from "@mui/material";
 
+import toast, { Toaster } from "react-hot-toast";
+
 import BaseCard from "@/app/dashboard/(DashboardLayout)/components/shared/BaseCard";
 
 import { useEffect, useState } from "react";
@@ -33,16 +35,13 @@ const page = () => {
   });
 
   const getUserDetails = async () => {
-    const response = await axios.get("/api/users/userData");
-    console.log(response.data.data._id);
+    const response = await axios.get("/api/provider/userData");
     setId(response.data.data._id);
   };
 
   const fetchData = async () => {
-    console.log("id::" + id);
     try {
-      const response = await axios.post("/api/users/profile", { _id: id });
-      console.log("Success", response.data);
+      const response = await axios.post("/api/provider/profile", { _id: id });
       setData({
         id: response.data._id,
         firstName: response.data.firstName,
@@ -68,15 +67,18 @@ const page = () => {
   // Update the profile
   const update = async () => {
     try {
-      const response = await axios.post("/api/users/updateProfile", { data });
-
+      const response = await axios.post("/api/provider/updateProfile", { data });
+      toast.success("Update success");
       console.log(response);
     } catch (error: any) {
       console.log(error.response.data.error);
+      toast.error(error.response.data.error);
     }
   };
 
   return (
+    <>
+      <Toaster />
     <Grid container spacing={3}>
       <Grid item xs={12} lg={12}>
         <BaseCard title="Profile">
@@ -188,6 +190,7 @@ const page = () => {
         </BaseCard>
       </Grid>
     </Grid>
+    </>
   );
 };
 

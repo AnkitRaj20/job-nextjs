@@ -11,6 +11,7 @@ export async function POST(request: NextRequest) {
         const reqBody = await request.json();
         const {firstName,middleName,lastName,email,password,mobile,gender,address} = reqBody
 
+        const lowerCaseAddress = address.toLowerCase();
         console.log(reqBody);
         
         // check if user exists or not
@@ -41,7 +42,7 @@ export async function POST(request: NextRequest) {
             mobile,
             email,
             gender,
-            address,
+            address:lowerCaseAddress,
             password:hashedPassword
         })
 

@@ -2,8 +2,6 @@
 import {
   Grid,
   TextField,
-  Checkbox,
-  FormGroup,
   FormControlLabel,
   RadioGroup,
   Radio,
@@ -20,6 +18,7 @@ import axios from "axios";
 
 const page = () => {
   const [id, setId] = useState("");
+  const [checkProfilePosted, setcheckProfilePosted] = useState(false);
   const [data, setData] = useState({
     id: "",
     firstName: "",
@@ -48,6 +47,20 @@ const page = () => {
     console.log(response.data.data);
     setId(response.data.data._id);
   };
+
+  const checkPostedProfile = async () => {
+    try {
+      const response = await axios.post("/api/users/checkPostedProfile",{
+        _id:id
+      });
+      console.log("checkPostedProfile::"+response.data.data);
+      if(response.data.data){
+        setcheckProfilePosted(true);
+      }
+    } catch (error: any) {
+      console.log(error.response.data.error);
+    }
+  }
 
   const fetchData = async () => {
     console.log("id::" + id);
@@ -78,6 +91,9 @@ const page = () => {
   useEffect(() => {
     fetchData();
   }, [id]);
+  useEffect(() => {
+    checkPostedProfile();
+  }, [id]);
 
   // Update the profile
   const update = async () => {
@@ -85,7 +101,6 @@ const page = () => {
       const response = await axios.post("/api/users/updateCandidateProfile", {
         data,
       });
-
       console.log(response);
     } catch (error: any) {
       console.log(error.response.data.error);
@@ -196,7 +211,7 @@ const page = () => {
                   onChange={(e) => {
                     setData({
                       ...data,
-                      address: e.target.value,
+                      address: e.target.value.toLowerCase(),
                     });
                   }}
                 />
@@ -250,7 +265,10 @@ const page = () => {
                   </div>
                   <div>
                     <button
-                      className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                      className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150
+                      disabled:opacity-25
+                      disabled:cursor-not-allowed
+                      "
                       type="button"
                       onClick={() =>
                         setShowModal({
@@ -258,6 +276,7 @@ const page = () => {
                           visible: true,
                         })
                       }
+                      disabled={checkProfilePosted}
                     >
                       Post Profile
                     </button>
@@ -305,7 +324,7 @@ const page = () => {
                               onChange={(e) => {
                                 setPostProfile({
                                   ...postProfile,
-                                  role: e.target.value,
+                                  role: e.target.value.toLowerCase(),
                                 });
                               }}
                             />
@@ -415,9 +434,11 @@ const page = () => {
                       Close
                     </button>
                     <button
-                      className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                      className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150
+                      "
                       type="button"
                       onClick={() => postProfileButton(showModal)}
+                      
                     >
                       Post Profile
                     </button>

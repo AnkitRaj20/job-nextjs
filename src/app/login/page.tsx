@@ -5,8 +5,8 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
+import Footer from '@/components/Footer'
+import Navbar from '@/components/Navbar2'
 
 export default function LoginPage() {
   const router = useRouter();

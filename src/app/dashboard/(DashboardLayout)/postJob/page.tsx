@@ -1,8 +1,6 @@
 "use client";
 import {
-  
   Grid,
-  
   TextField,
   FormControlLabel,
   RadioGroup,
@@ -16,6 +14,7 @@ import {
 import BaseCard from "@/app/dashboard/(DashboardLayout)/components/shared/BaseCard";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 const page = () => {
   const [data, setData] = useState({
@@ -31,12 +30,17 @@ const page = () => {
     jobType: "",
   });
   const getUserDetails = async () => {
-    const response = await axios.get("/api/users/userData");
+    const response = await axios.get("/api/provider/userData");
     console.log(response.data);
     setData({
       ...data,
       employerId: response.data.data._id,
-      employerName: response.data.data.firstName+" "+response.data.data.middleName+" "+response.data.data.lastName
+      employerName:
+        response.data.data.firstName +
+        " " +
+        response.data.data.middleName +
+        " " +
+        response.data.data.lastName,
     });
   };
 
@@ -44,17 +48,20 @@ const page = () => {
     getUserDetails();
   }, []);
 
-  const post = async() => {
+  const post = async () => {
     try {
-      const response = await axios.post("/api/users/postJob",data);
-      console.log(response)
-    }catch (error:any) {
+      const response = await axios.post("/api/provider/postJob", data);
+      console.log(response);
+      toast.success("Job Posted Successfully");
+    } catch (error: any) {
       console.log(error.response.data.error);
+      toast.error(error.response.data.error);
     }
-  }
+  };
 
   return (
     <div>
+      <Toaster />
       <Grid container spacing={3}>
         <Grid item xs={12} lg={12}>
           <BaseCard title="Post Job">
@@ -99,14 +106,17 @@ const page = () => {
                     });
                   }}
                 />
-                <TextField id="minEducation" label="Minimum Education"
-                value={data.education}
-                onChange={(e) => {
-                  setData({
-                    ...data,
-                    education: e.target.value,
-                  });
-                }} />
+                <TextField
+                  id="minEducation"
+                  label="Minimum Education"
+                  value={data.education}
+                  onChange={(e) => {
+                    setData({
+                      ...data,
+                      education: e.target.value,
+                    });
+                  }}
+                />
 
                 <div>
                   <TextField
@@ -114,12 +124,12 @@ const page = () => {
                     label="Experience"
                     variant="outlined"
                     value={data.experience}
-                  onChange={(e) => {
-                    setData({
-                      ...data,
-                      experience: e.target.value,
-                    });
-                  }}
+                    onChange={(e) => {
+                      setData({
+                        ...data,
+                        experience: e.target.value,
+                      });
+                    }}
                   />
                   <TextField
                     required
@@ -127,12 +137,12 @@ const page = () => {
                     label="Salary"
                     variant="outlined"
                     value={data.salary}
-                  onChange={(e) => {
-                    setData({
-                      ...data,
-                      salary: e.target.value,
-                    });
-                  }}
+                    onChange={(e) => {
+                      setData({
+                        ...data,
+                        salary: e.target.value,
+                      });
+                    }}
                   />
                   <TextField
                     required
@@ -140,21 +150,24 @@ const page = () => {
                     label="Mobile Number"
                     type="number"
                     value={data.mobile}
-                  onChange={(e) => {
-                    setData({
-                      ...data,
-                      mobile: e.target.value,
-                    });
-                  }}
+                    onChange={(e) => {
+                      setData({
+                        ...data,
+                        mobile: e.target.value,
+                      });
+                    }}
                   />
-                  <TextField id="english" label="English" variant="outlined"
-                  value={data.english}
-                  onChange={(e) => {
-                    setData({
-                      ...data,
-                      english: e.target.value,
-                    });
-                  }}
+                  <TextField
+                    id="english"
+                    label="English"
+                    variant="outlined"
+                    value={data.english}
+                    onChange={(e) => {
+                      setData({
+                        ...data,
+                        english: e.target.value,
+                      });
+                    }}
                   />
 
                   <FormControl>
@@ -166,13 +179,12 @@ const page = () => {
                       aria-labelledby="demo-radio-buttons-group-label"
                       defaultValue="full"
                       name="radio-buttons-group"
-                      
-                  onChange={(e) => {
-                    setData({
-                      ...data,
-                      jobType: e.target.value,
-                    });
-                  }}
+                      onChange={(e) => {
+                        setData({
+                          ...data,
+                          jobType: e.target.value,
+                        });
+                      }}
                     >
                       <FormControlLabel
                         value="Full Time"
@@ -192,8 +204,7 @@ const page = () => {
                     </RadioGroup>
                   </FormControl>
                 </div>
-                <Button variant="text" color="primary"
-                onClick={post}>
+                <Button variant="text" color="primary" onClick={post}>
                   Post Job
                 </Button>
               </div>

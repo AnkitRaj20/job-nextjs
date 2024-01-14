@@ -2,7 +2,14 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "@/dbConfig/dbConfig";
 import axios from "axios";
-import { IconTrash, IconPencil } from "@tabler/icons-react";
+import {
+  IconTrash,
+  IconPencil,
+  IconMapPin,
+  IconPhoneCall,
+  IconCurrencyRupee,
+  IconClock,
+} from "@tabler/icons-react";
 import {
   Grid,
   TextField,
@@ -20,7 +27,7 @@ connect();
 const page = () => {
   const [id, setId] = useState("");
   const [name, setName] = useState("");
-  const [data, setData]:any = useState([]);
+  const [data, setData]: any = useState([]);
   const [showModal, setShowModal] = useState({
     visible: false,
     id: "",
@@ -29,7 +36,7 @@ const page = () => {
   const [showDeleteModal, setShowDeleteModal] = useState({
     visible: false,
     id: "",
-  })
+  });
   const [updateData, setUpdateData] = useState({
     id: "",
     role: "",
@@ -42,9 +49,43 @@ const page = () => {
     jobType: "",
   });
 
+  const update = async (modal: any) => {
+    setShowModal({
+      ...showModal,
+      visible: false,
+    });
+
+    try {
+      const response = await axios.post("/api/users/updatePostedProfile", {
+        updateData,
+        modal,
+        name: name,
+      });
+      fetchData();
+    } catch (error: any) {
+      console.log(error.response.data.error);
+    }
+  };
+
+  const deleteIcon = async (model: any) => {
+    setShowDeleteModal({
+      ...showDeleteModal,
+      visible: false,
+    });
+    const id = model.id;
+    try {
+      const response = await axios.post("/api/users/deletePostedProfile", {
+        _id: id,
+      });
+      fetchData();
+    } catch (error: any) {
+      console.log(error.response.data.error);
+      // toast.error(error.response.data.error);
+    }
+  };
+
   const getUserDetails = async () => {
     const response = await axios.get("/api/users/candidateData");
-    console.log(response.data.data);
     setId(response.data.data._id);
     setName(
       response.data.data.firstName +
@@ -60,7 +101,6 @@ const page = () => {
       const response = await axios.post("/api/users/getPostedProfileData", {
         _id: id,
       });
-      console.log("Success", response.data.data);
       setData(response.data.data);
     } catch (error: any) {
       console.log(error.response.data.error);
@@ -74,196 +114,136 @@ const page = () => {
   useEffect(() => {
     fetchData();
   }, [id]);
-
-  const deleteIcon = async (model: any) => {
-    setShowDeleteModal({
-      ...showDeleteModal,
-      visible: false
-    })
-    const id = model.id;
-      try {
-        const response = await axios.post("/api/users/deletePostedProfile", {
-          _id: id,
-        });
-        console.log("Success", response.data);
-        fetchData();
-      } catch (error: any) {
-        console.log(error.response.data.error);
-        // toast.error(error.response.data.error);
-      }
-  };
-
-  const update = async (modal: any) => {
-    setShowModal({
-      ...showModal,
-      visible: false,
-    });
-
-    try {
-      const response = await axios.post("/api/users/updatePostedProfile", {
-        updateData,
-        modal,
-        name: name,
-      });
-      console.log(response);
-      fetchData();
-    } catch (error: any) {
-      console.log(error.response.data.error);
-    }
-  };
-
   return (
-    <div className="bg-white">
-      <section className="text-gray-600 body-font">
-        <div className="container px-5 py-24 mx-auto">
-          <div className="flex flex-wrap w-full mb-20">
-            <div className="lg:w-1/2 w-full mb-6 lg:mb-0">
-              <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
-                Your Posted Profile
-              </h1>
-              <div className="h-1 w-20 bg-indigo-500 rounded"></div>
-            </div>
-            <p className="lg:w-1/2 w-full leading-relaxed text-gray-500">
-              Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical
-              gentrify, subway tile poke farm-to-table. Franzen you probably
-              haven't heard of them man bun deep jianbing selfies heirloom prism
-              food truck ugh squid celiac humblebrag.
-            </p>
-          </div>
-          {data.length > 0 ? (
-            <div className="flex flex-wrap -m-4">
-              {data.map((item: any) => {
-                return (
-                  <div key={item._id} className="m-5 shadow-2xl">
-                    <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden capitalize rounded-lg shadow-2xl bg-gray-50 text-gray-800 ">
-                      <div className="flex space-x-4">
-                        <img
-                          alt=""
-                          src="https://source.unsplash.com/100x100/?portrait"
-                          className="object-cover w-12 h-12 rounded-full shadow bg-gray-500"
-                        />
-                        <div className="flex flex-col space-y-1">
-                          <a
-                            rel="noopener noreferrer"
-                            href="#"
-                            className="text-sm font-semibold"
-                          >
-                            {name}
-                          </a>
-                          {/* <span className="text-xs text-gray-600">
-                           4 hours ago
-                          </span> */}
-                        </div>
-                      </div>
-                      <div>
-                        {/* <img src="https://source.unsplash.com/random/100x100/?5" alt="" className="object-cover w-full mb-4 h-60 sm:h-96 bg-gray-500" /> */}
-
-                        <span className="inline-block py-1 px-2 rounded bg-indigo-50 text-indigo-700 text-lg font-bold tracking-widest mb-2">
-                          ROLE: {item.role}
-                        </span>
-
-                        <h2 className="mb-1 text-xl font-semibold">
-                          Location: {item.address}
-                        </h2>
-
-                        <p className="font-semibold text-gray-600">
-                          Job Type: {item.jobType}
-                        </p>
-
-                        <p className="leading-relaxed text-base font-medium">
-                          Education:{item.education}
-                        </p>
-                        <p className="leading-relaxed  font-medium">
-                          Experience:{item.experience}
-                        </p>
-                        <p className="leading-relaxed  font-medium">
-                          English:{item.english}
-                        </p>
-                        <p className="leading-relaxed  font-medium">
-                          Gender:{item.gender}
-                        </p>
-                        <p className="mt-1 leading-relaxed font-medium">
-                          Salary:₹{item.salary}
-                        </p>
-
-                        <div className="flex items-center flex-wrap ">
-                          <a className=" inline-flex items-center mt-2 md:mb-2 lg:mb-0 font-medium space-x-5">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 512 512"
-                              aria-label="Phonenumber"
-                              className="w-4 h-4"
-                            >
-                              <path
-                                fill="currentColor"
-                                d="M449.366,89.648l-.685-.428L362.088,46.559,268.625,171.176l43,57.337a88.529,88.529,0,0,1-83.115,83.114l-57.336-43L46.558,362.088l42.306,85.869.356.725.429.684a25.085,25.085,0,0,0,21.393,11.857h22.344A327.836,327.836,0,0,0,461.222,133.386V111.041A25.084,25.084,0,0,0,449.366,89.648Zm-20.144,43.738c0,163.125-132.712,295.837-295.836,295.837h-18.08L87,371.76l84.18-63.135,46.867,35.149h5.333a120.535,120.535,0,0,0,120.4-120.4v-5.333l-35.149-46.866L371.759,87l57.463,28.311Z"
-                              ></path>
-                            </svg>
-
-                            <p className="leading-relaxed text-base">
-                              {item.mobile}
-                            </p>
-                          </a>
-                        </div>
-                      </div>
-                      <div className="flex flex-wrap justify-between">
-                        <div className="space-x-2">
-                          <button
-                            aria-label="Bookmark this post"
-                            type="button"
-                            className="p-2 hover:bg-green-600 rounded-full hover:text-white"
-                          >
-                            <IconPencil
-                              onClick={() =>
-                                setShowModal({
-                                  id: item._id,
-                                  visible: true,
-                                  employerId: item.employerId,
-                                })
-                              }
-                            />
-                          </button>
-                        </div>
-                        <div className="flex space-x-2 text-sm text-gray-600">
-                          <button
-                            aria-label="Bookmark this post"
-                            type="button"
-                            className="p-2 hover:bg-red-600 rounded-full hover:text-white"
-                          >
-                            <IconTrash 
-                            onClick={() =>
-                                setShowDeleteModal({
-                                  id: item._id,
-                                  visible: true,
-                                })
-                              } />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          ) : (
-            <section className="text-gray-600 body-font">
-              <div className="container px-5 py-24 mx-auto">
-                <div className="lg:w-2/3 flex flex-col sm:flex-row sm:items-center items-start mx-auto">
-                  <h1 className="flex-grow sm:pr-16 text-2xl font-medium title-font text-gray-900">
-                    OOps.Looks like You did not posted anyJob.
-                  </h1>
-
-                  <a href="./postJob">
-                    <button className="flex-shrink-0 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg mt-10 sm:mt-0">
-                      Post Now
-                    </button>
-                  </a>
+    <div>
+      {data.map((item: any) => {
+        return (
+          <div key={item._id} className="p-8 bg-white shadow mt-24">
+            <div className="grid grid-cols-1 md:grid-cols-3">
+              <div className="grid grid-cols-3 text-center order-last md:order-first mt-20 md:mt-0">
+                <div>
+                  <p className="font-bold text-gray-700 text-xl">
+                    {item.experience}
+                  </p>
+                  <p className="text-gray-400">Year experience</p>
+                </div>
+                <div>
+                  <p className="font-bold text-gray-700 text-xl">
+                    {item.education}
+                  </p>
+                  <p className="text-gray-400">Higher Education</p>
+                </div>
+                <div>
+                  <p className="font-bold text-gray-700 text-xl">
+                    {item.english}
+                  </p>
+                  <p className="text-gray-400">English Known</p>
                 </div>
               </div>
-            </section>
-          )}
-        </div>
-      </section>
+              <div className="relative">
+                <div className="w-48 h-48 bg-indigo-100 mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-indigo-500">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-24 w-24"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <div className="space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center">
+                <button
+                  type="button"
+                  className="
+                            h-12 rounded-full
+                            hover:text-white py-2 px-4 uppercase  bg-white hover:bg-green-600 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5 
+                            "
+                  onClick={() =>
+                    setShowModal({
+                      id: item._id,
+                      visible: true,
+                      employerId: item.employerId,
+                    })
+                  }
+                >
+                  <IconPencil />
+                </button>
+                <button
+                  className=" h-12 rounded-full
+                            hover:text-white py-2 px-4 uppercase  bg-white hover:bg-red-600 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5 "
+                  onClick={() =>
+                    setShowDeleteModal({
+                      id: item._id,
+                      visible: true,
+                    })
+                  }
+                >
+                  <IconTrash />
+                </button>
+              </div>
+            </div>
+            <div className="mt-20 text-center border-b pb-12">
+              <h1 className="text-4xl font-medium text-gray-700">
+                {name},
+                <span className="font-light text-gray-500">{item.gender}</span>
+              </h1>
+              <p className="inline-block py-1 px-2 rounded bg-indigo-50 text-indigo-700 text-lg font-bold tracking-widest mb-2">
+                Role: {item.role}
+              </p>
+              <div>
+                <a className=" inline-flex items-center mt-2 md:mb-2 lg:mb-0 font-medium space-x-5">
+                  <IconMapPin />
+                  <p className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
+                    {item.address}
+                  </p>
+                </a>
+              </div>
+
+              <div>
+                <a className=" inline-flex items-center mt-2 md:mb-2 lg:mb-0 font-medium space-x-5">
+                  <IconPhoneCall />
+                  <p className="leading-relaxed text-base text-gray-500">
+                    {item.mobile}
+                  </p>
+                </a>
+              </div>
+              <div>
+                <a className=" inline-flex items-center mt-2 md:mb-2 lg:mb-0 font-medium space-x-5">
+                  <IconClock />
+                  <p className="leading-relaxed text-base text-gray-500">
+                    {item.jobType}
+                  </p>
+                </a>
+              </div>
+              <div>
+                <a className=" inline-flex items-center mt-2 md:mb-2 lg:mb-0 font-medium space-x-5">
+                  <IconCurrencyRupee />
+                  <p className="leading-relaxed text-base text-gray-500">
+                    {item.salary}
+                  </p>
+                </a>
+              </div>
+            </div>
+            <div className="mt-12 flex flex-col justify-center">
+              <p className="text-gray-600 text-center font-light lg:px-16">
+                An artist of considerable range, Ryan — the name taken by
+                Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs
+                and records all of his own music, giving it a warm, intimate
+                feel with a solid groove structure. An artist of considerable
+                range.
+              </p>
+              <button className="text-indigo-500 py-2 px-4  font-medium mt-4">
+                Show more
+              </button>
+            </div>
+          </div>
+        );
+      })}
 
       {/* Modal */}
       <>
@@ -275,7 +255,7 @@ const page = () => {
                 <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                   {/*header*/}
                   <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
-                    <h3 className="text-3xl font-semibold">Update Job</h3>
+                    <h3 className="text-3xl font-semibold">Update Profile</h3>
                   </div>
                   {/*body*/}
                   <div className="relative p-6 flex-auto">
@@ -446,8 +426,7 @@ const page = () => {
           </>
         ) : null}
       </>
-     
-     
+
       {/*Delete Modal */}
       <>
         {showDeleteModal.visible ? (
@@ -458,13 +437,11 @@ const page = () => {
                 <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                   {/*header*/}
                   <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
-                    <h3 className="text-3xl font-semibold">Delete Job</h3>
+                    <h3 className="text-3xl font-semibold">Delete Profile</h3>
                   </div>
                   {/*body*/}
                   <div className="relative p-6 flex-auto">
-                    <div>
-                      Are you sure you want to delete this Profile?
-                    </div>
+                    <div>Are you sure you want to delete this Profile?</div>
                   </div>
                   {/*footer*/}
                   <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
@@ -474,7 +451,7 @@ const page = () => {
                       onClick={() =>
                         setShowDeleteModal({
                           ...showDeleteModal,
-                          visible: false
+                          visible: false,
                         })
                       }
                     >

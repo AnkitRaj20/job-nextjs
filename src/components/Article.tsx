@@ -2,14 +2,6 @@
 const Article = () => {
   return (
     <div className="bg-white"
-// 	data-aos="flip-up"
-//   data-aos-offset="200"
-//   data-aos-delay="50"
-//   data-aos-duration="1000"
-//   data-aos-easing="ease-in-out"
-//   data-aos-mirror="true"
-//   data-aos-once="true"
-//   data-aos-anchor-placement="top-center"
 	>
         <div className="p-5 mx-auto sm:p-10 md:p-16 dark:bg-gray-800 dark:text-gray-100">
 	<div className="flex flex-col max-w-3xl mx-auto overflow-hidden rounded">

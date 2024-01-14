@@ -12,10 +12,12 @@ const postJobSchema = new mongoose.Schema({
     role: {
         type: String,
         required: [true, "Please provide job role"],
+        lowercase: true,
     },
     location: {
         type: String,
         required: [true, "Please provide job location"],
+        lowercase: true,
     },
     education: {
         type: String,

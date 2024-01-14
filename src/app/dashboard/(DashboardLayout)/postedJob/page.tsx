@@ -15,12 +15,14 @@ import {
   Box,
 } from "@mui/material";
 
+import toast, { Toaster } from "react-hot-toast";
+
 connect();
 
 const page = () => {
   const [id, setId] = useState("");
   const [name, setName] = useState("");
-  const [data, setData]:any = useState([]);
+  const [data, setData]: any = useState([]);
   const [showModal, setShowModal] = useState({
     visible: false,
     id: "",
@@ -29,7 +31,7 @@ const page = () => {
   const [showDeleteModal, setShowDeleteModal] = useState({
     visible: false,
     id: "",
-  })
+  });
   const [updateData, setUpdateData] = useState({
     id: "",
     role: "",
@@ -43,7 +45,7 @@ const page = () => {
   });
 
   const getUserDetails = async () => {
-    const response = await axios.get("/api/users/userData");
+    const response = await axios.get("/api/provider/userData");
     console.log(response.data.data);
     setId(response.data.data._id);
     setName(
@@ -57,7 +59,7 @@ const page = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.post("/api/users/getPostedJobData", {
+      const response = await axios.post("/api/provider/getPostedJobData", {
         _id: id,
       });
       console.log("Success", response.data.data);
@@ -78,21 +80,21 @@ const page = () => {
   const deleteIcon = async (model: any) => {
     setShowDeleteModal({
       ...showDeleteModal,
-      visible: false
-    })
+      visible: false,
+    });
     const id = model.id;
 
-    
-      try {
-        const response = await axios.post("/api/users/deletePostedJob", {
-          _id: id,
-        });
-        console.log("Success", response.data);
-        fetchData();
-      } catch (error: any) {
-        console.log(error.response.data.error);
-        // toast.error(error.response.data.error);
-      }
+    try {
+      const response = await axios.post("/api/provider/deletePostedJob", {
+        _id: id,
+      });
+      console.log("Success", response.data);
+      toast.success("Job deleted successfully");
+      fetchData();
+    } catch (error: any) {
+      console.log(error.response.data.error);
+      toast.error(error.response.data.error);
+    }
   };
 
   const update = async (modal: any) => {
@@ -102,20 +104,23 @@ const page = () => {
     });
 
     try {
-      const response = await axios.post("/api/users/updatePostedJobData", {
+      const response = await axios.post("/api/provider/updatePostedJobData", {
         updateData,
         modal,
         name: name,
       });
       console.log(response);
+      toast.success("Updated successfully");
       fetchData();
     } catch (error: any) {
       console.log(error.response.data.error);
+      toast.error(error.response.data.error);
     }
   };
 
   return (
     <div className="bg-white">
+       <Toaster />
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-wrap w-full mb-20">
@@ -229,13 +234,14 @@ const page = () => {
                             type="button"
                             className="p-2 hover:bg-red-600 rounded-full hover:text-white"
                           >
-                            <IconTrash 
-                            onClick={() =>
+                            <IconTrash
+                              onClick={() =>
                                 setShowDeleteModal({
                                   id: item._id,
                                   visible: true,
                                 })
-                              } />
+                              }
+                            />
                           </button>
                         </div>
                       </div>
@@ -445,8 +451,7 @@ const page = () => {
           </>
         ) : null}
       </>
-     
-     
+
       {/*Delete Modal */}
       <>
         {showDeleteModal.visible ? (
@@ -461,9 +466,7 @@ const page = () => {
                   </div>
                   {/*body*/}
                   <div className="relative p-6 flex-auto">
-                    <div>
-                      Are you sure you want to delete this job?
-                    </div>
+                    <div>Are you sure you want to delete this job?</div>
                   </div>
                   {/*footer*/}
                   <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
@@ -473,7 +476,7 @@ const page = () => {
                       onClick={() =>
                         setShowDeleteModal({
                           ...showDeleteModal,
-                          visible: false
+                          visible: false,
                         })
                       }
                     >

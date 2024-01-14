@@ -27,8 +27,8 @@ export async function POST(request: NextRequest) {
         const newJob = new PostJob({
             employerId,
             employerName,
-            role,
-            location,
+            role:role.toLowerCase(),
+            location:location.toLowerCase(),
             education,
             mobile,
             experience,

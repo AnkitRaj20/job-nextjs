@@ -21,12 +21,6 @@ export async function POST(request:NextRequest){
         const response = NextResponse.json({
             message: 'Data found successfully',
             success: true,
-            // id: user._id,
-            // firstName: user.firstName,
-            // middleName: user.middleName,
-            // lastName: user.lastName,
-            // email: user.email,
-            // mobile: user.mobile
             data: user
         })
 
