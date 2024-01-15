@@ -3,11 +3,22 @@ import React, { useEffect } from "react";
 import Link from "next/link";
 import Logo from "../../public/images/logos/logo5.png";
 import Image from "next/image";
-import { MoonIcon, SunIcon } from "@radix-ui/react-icons"
-import { useTheme } from "next-themes"
+import DarkMode from "@/components/DarkMode";
+
+// DARK MODE
+import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
+import { useTheme } from "next-themes";
+
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Page = () => {
-  const { setTheme } = useTheme()
+  const { setTheme } = useTheme();
   useEffect(() => {
     const openMenu = () => {
       const menu = document.getElementById("menu");
@@ -23,23 +34,8 @@ const Page = () => {
     };
   }, []);
 
-  const toggleMode = () => {
-    console.log(setTheme);
-    
-    if(localStorage.theme === 'dark'){
-      console.log("dark")
-      setTheme("light");
-    }else{
-      console.log("light")
-      document.documentElement.classList.add('dark')
-      setTheme("dark");
-    }
-  }
-
   return (
-    /* <div className={`flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg text-gray-700  shadow-lg sticky  shadow-indigo-500/40   ${localStorage.theme === 'dark' ? "bg-white" :" bg-slate-800" } `}> */
-
-    <div className="flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg text-gray-700 bg-white shadow-lg sticky  shadow-indigo-500/40  dark:bg-slate-800">
+    <div className="flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg text-gray-700 bg-white shadow-lg sticky  shadow-indigo-500/40  dark:bg-slate-900">
       <div>
         <a href="/">
           <Image
@@ -76,6 +72,7 @@ const Page = () => {
           className="
               pt-4
               text-base text-gray-700
+              dark:text-white
               item-center
               md:flex
               md:justify-between 
@@ -106,10 +103,10 @@ const Page = () => {
             Contact Us
           </Link>
           <div className="font-bold ">
-            <button className="inline-flex items-center bg-gray-100 border-0 py-3 px-3  mr-2 focus:outline-none hover:bg-gray-200 rounded-lg text-base mt-4 md:mt-0 ">
+            <button className="inline-flex items-center bg-gray-100 border-0 py-3 px-3 text-black  mr-2 focus:outline-none hover:bg-gray-200 rounded-lg text-base mt-4 md:mt-0 ">
               <Link href="/employerLogin">Employer Login</Link>
             </button>
-            <button className="inline-flex items-center bg-green-300 border-0 py-3 px-3 hover:text-white focus:outline-none hover:bg-green-500 rounded-lg text-base mt-4 md:mt-0 ">
+            <button className="inline-flex items-center bg-green-300 border-0 py-3 px-3 text-black  hover:text-white focus:outline-none hover:bg-green-500 rounded-lg text-base mt-4 md:mt-0 ">
               <Link href="/login">User Login</Link>
               <svg
                 fill="none"
@@ -123,9 +120,28 @@ const Page = () => {
                 <path d="M5 12h14M12 5l7 7-7 7"></path>
               </svg>
             </button>
-            {/* <button className="inline-flex items-center bg-blue-200 border-0 py-3 px-3 hover:text-white focus:outline-none hover:bg-blue-500 dark:bg-red-700 rounded-lg text-base mt-4 md:mt-0 " onClick={toggleMode}>
-              dark
-            </button> */}
+
+            {/* <DarkMode />  */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="icon" className="mx-2">
+                  <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                  <MoonIcon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                  <span className="sr-only">Toggle theme</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={() => setTheme("light")}>
+                  Light
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme("dark")}>
+                  Dark
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme("system")}>
+                  System
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </ul>
       </div>

@@ -5,8 +5,8 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
-import Footer from '@/components/Footer'
-import Navbar from '@/components/Navbar2'
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar2";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -49,20 +49,16 @@ export default function LoginPage() {
     <>
       <Navbar />
       <Toaster />
-      <div className="lg:flex">
-        <div className="lg:w-1/2 xl:max-w-screen-sm bg-white">
-          <div className="py-12 bg-white lg:bg-white flex justify-center lg:justify-start lg:px-12">
-            <div className="cursor-pointer flex items-center">
-              {/* <div className="text-2xl text-indigo-800 tracking-wide ml-2 font-semibold">Are you an employer?</div> */}
-            </div>
-          </div>
-          <div className="mt-10 bg-white px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
+      <div className="lg:flex ">
+        <div className="lg:w-1/2 xl:max-w-screen-sm dark:bg-dark  bg-white ">
+          <div className="py-12 bg-white dark:bg-dark  lg:bg-white flex justify-center lg:justify-start lg:px-12"></div>
+          <div className="mt-10 bg-white dark:bg-dark  px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
             <h2
-              className="text-center text-4xl text-indigo-900 font-display font-semibold lg:text-left xl:text-5xl
+              className="text-center text-4xl text-indigo-900 dark:text-white font-display font-semibold lg:text-left xl:text-5xl
                     xl:text-bold"
             >
               {loading ? (
-                <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-violet-400 justify-center text-center"></div>
+                <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-violet-400 justify-center text-center "></div>
               ) : (
                 "Login"
               )}
@@ -70,11 +66,13 @@ export default function LoginPage() {
             <div className="mt-12">
               <form method="POST">
                 <div>
-                  <div className="text-sm font-bold text-gray-700 tracking-wide">
+                  <div className="text-sm font-bold dark:text-white text-gray-700 tracking-wide">
                     Email Address
                   </div>
                   <input
-                    className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
+                    className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500
+                    dark:bg-dark dark:text-gray-300 dark:border-gray-600
+                    "
                     type=""
                     placeholder="mike@gmail.com"
                     value={user.email}
@@ -88,12 +86,13 @@ export default function LoginPage() {
                 </div>
                 <div className="mt-8">
                   <div className="flex justify-between items-center">
-                    <div className="text-sm font-bold text-gray-700 tracking-wide">
+                    <div className="text-sm font-bold text-gray-700 dark:text-white tracking-wide">
                       Password
                     </div>
                     <div>
                       <a
-                        className="text-xs font-display font-semibold text-indigo-600 hover:text-indigo-800
+                        className="text-xs font-display font-semibold text-indigo-600
+                        dark:text-indigo-200 hover:text-indigo-800
                         cursor-pointer"
                       >
                         Forgot Password?
@@ -101,7 +100,9 @@ export default function LoginPage() {
                     </div>
                   </div>
                   <input
-                    className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
+                    className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500
+                    dark:bg-dark dark:text-gray-300 dark:border-gray-600
+                    "
                     type="password"
                     placeholder="Enter your password"
                     value={user.password}
@@ -123,13 +124,13 @@ export default function LoginPage() {
                   </button>
                 </div>
               </form>
-              <div className="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
-                Don't have an account ?{" "}
+              <div className="mt-12 text-sm font-display font-semibold text-gray-700 dark:text-white text-center">
+                Don't have an account ? 
                 <Link
                   href="/signup"
-                  className="cursor-pointer text-indigo-600 hover:text-indigo-800"
+                  className="cursor-pointer text-indigo-600 dark:text-indigo-200 hover:text-indigo-800"
                 >
-                  Sign up
+                   Sign up
                 </Link>
               </div>
             </div>

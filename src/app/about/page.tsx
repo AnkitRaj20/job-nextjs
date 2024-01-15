@@ -8,7 +8,7 @@ const page = () => {
   return (
     <div>
       <Navbar />
-      <div className="bg-white py-6 sm:py-8 lg:py-12">
+      <div className="bg-white dark:bg-dark py-6 sm:py-8 lg:py-12">
         <div className="mx-auto max-w-screen-xl px-4 md:px-8">
           <div className="grid gap-8 md:grid-cols-2 lg:gap-12">
             <div>
@@ -34,7 +34,7 @@ const page = () => {
               About <span className="text-indigo-600">NayiNaukri</span>
             </h2>
 
-              <p className="mb-6 text-gray-500 sm:text-lg md:mb-8">
+              <p className="mb-6 text-gray-500 dark:text-slate-200 sm:text-lg md:mb-8">
                 Looking for the perfect job? Your search ends here, India's
                 largest and fastest-growing job opportunities platform. Trusted
                 by over 5 crore job seekers.
@@ -70,8 +70,8 @@ const page = () => {
         </div>
       </div>
 
-     
-      <section className="py-6 px-10 ml-16 rounded-lg mr-16 bg-indigo-500 text-gray-900">
+      <div className="dark:bg-dark">
+      <div className="py-6 px-10  ml-16 rounded-lg mr-16 bg-indigo-500 text-gray-900">
         <div className="container mx-auto flex flex-col items-center justify-center p-4 space-y-8 md:p-10 lg:space-y-0 lg:flex-row lg:justify-between">
           <h1 className="text-3xl font-semibold leadi text-center lg:text-left text-white">
             Any Question?
@@ -82,7 +82,11 @@ const page = () => {
             </button>
           </a>
         </div>
-      </section>
+      </div>
+      </div>
+
+     
+      
       <Footer />
     </div>
   );

@@ -7,14 +7,14 @@ import { Typewriter } from "react-simple-typewriter";
 
 const Hero2 = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4   place-items-center   bg-white">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4   place-items-center   bg-white dark:bg-dark">
       <div className="max-w-xl  text-center ltr:sm:text-left rtl:sm:text-right">
         <h1 className="text-green-500  text-xl font-semibold mb-10">
           India's Best Job Platform
         </h1>
-        <h1 className="text-3xl font-extrabold sm:text-5xl ">
+        <h1 className="text-3xl dark:text-white font-extrabold sm:text-5xl ">
           Looking For 
-          <strong className="block font-extrabold text-indigo-700 mt-5">
+          <strong className="block font-extrabold text-indigo-700 mt-5 dark:text-zinc-400">
             <Typewriter
               cursor
               cursorBlinking
@@ -26,17 +26,17 @@ const Hero2 = () => {
             />
           </strong>
         </h1>
-        <h3 className="mt-10 font-bold max-w-lg sm:text-xl/relaxed">
+        <h3 className="mt-10 font-bold dark:text-white max-w-lg sm:text-xl/relaxed">
           Your Job Search Ends Here
         </h3>
 
         <section className="py-14">
           <div className="max-w-screen-xl mx-auto px-4 md:px-8">
             <div className="max-w-xl">
-              <h3 className="text-3xl font-bold">
+              <h3 className="text-3xl font-bold dark:text-ehite">
                 Search Job by Title or City
               </h3>
-              <p className="text-gray-600 mt-3">
+              <p className="text-gray-600 dark:text-gray-300 mt-3">
                 Seach your job by writing title or location .
               </p>
             </div>

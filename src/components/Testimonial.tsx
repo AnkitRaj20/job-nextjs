@@ -29,9 +29,9 @@ export default   () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
   return (
-    <section className="py-14">
+    <section className="py-14 dark:bg-dark">
       <div className="max-w-screen-xl mx-auto px-4 md:px-8">
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="max-w-3xl mx-auto text-center ">
           <h3 className="text-indigo-600 font-semibold pb-6">
             What people are saying
           </h3>
@@ -41,7 +41,7 @@ export default   () => {
                 <li key={idx}>
                   <figure>
                     <blockquote>
-                      <p className="text-gray-800 text-xl font-semibold sm:text-2xl">
+                      <p className="text-gray-800 dark:text-white text-xl font-semibold sm:text-2xl">
                         “{item.quote}“
                       </p>
                     </blockquote>
@@ -51,10 +51,10 @@ export default   () => {
                         className="w-16 h-16 mx-auto rounded-full"
                       />
                       <div className="mt-3">
-                        <span className="block text-gray-800 font-semibold">
+                        <span className="block text-gray-800 dark:text-white font-semibold">
                           {item.name}
                         </span>
-                        <span className="block text-gray-600 text-sm mt-0.5">
+                        <span className="block text-gray-600 dark:text-white text-sm mt-0.5">
                           {item.title}
                         </span>
                       </div>
