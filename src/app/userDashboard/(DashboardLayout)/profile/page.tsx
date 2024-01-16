@@ -79,6 +79,7 @@ const page = () => {
         address: response.data.data.address,
         gender: response.data.data.gender,
       });
+      localStorage.setItem("name" , response.data.data.firstName);
     } catch (error: any) {
       console.log(error.response.data.error);
       // toast.error(error.response.data.data.error);
@@ -129,7 +130,7 @@ const page = () => {
 
   return (
     <>
-      <Grid container spacing={3}>
+      <Grid container spacing={3} >
         <Grid item xs={12} lg={12}>
           <BaseCard title="Profile">
             <Box
@@ -142,6 +143,7 @@ const page = () => {
             >
               <div>
                 <TextField
+                className="dark:bg-slate-200"
                   required
                   id="firstName"
                   label="First Name"
@@ -154,6 +156,7 @@ const page = () => {
                   }}
                 />
                 <TextField
+                className="dark:bg-slate-200"
                   id="middleName"
                   label="Middle Name"
                   value={data.middleName}
@@ -165,6 +168,7 @@ const page = () => {
                   }}
                 />
                 <TextField
+                className="dark:bg-slate-200"
                   required
                   id="lastName"
                   label="Last Name"
@@ -179,6 +183,7 @@ const page = () => {
 
                 <div>
                   <TextField
+                  className="dark:bg-slate-200"
                     required
                     id="email-basic"
                     label="Email"
@@ -192,6 +197,7 @@ const page = () => {
                     }}
                   />
                   <TextField
+                  className="dark:bg-slate-200"
                     id="standard-number"
                     label="Number"
                     type="number"
@@ -204,6 +210,7 @@ const page = () => {
                     }}
                   />
                   <TextField
+                  className="dark:bg-slate-200"
                   required
                   id="address"
                   label="Address"
@@ -216,6 +223,7 @@ const page = () => {
                   }}
                 />
                   <TextField
+                  className="dark:bg-slate-200"
                   required
                   disabled
                   id="gender"
@@ -316,6 +324,7 @@ const page = () => {
                             autoComplete="off"
                           >
                             <TextField
+                            className="dark:bg-slate-200"
                             required
                               id="role"
                               label="Role"
@@ -329,6 +338,7 @@ const page = () => {
                               }}
                             />
                             <TextField
+                            className="dark:bg-slate-200"
                             
                               id="education"
                               label="Education"
@@ -342,6 +352,7 @@ const page = () => {
                               }}
                             />
                             <TextField
+                            className="dark:bg-slate-200"
                             
                               id="experience"
                               label="Experience"
@@ -355,6 +366,7 @@ const page = () => {
                               }}
                             />
                             <TextField
+                            className="dark:bg-slate-200"
                             
                               id="English"
                               label="English"
@@ -368,6 +380,7 @@ const page = () => {
                               }}
                             />
                             <TextField
+                            className="dark:bg-slate-200"
                             required
                               id="standard-number"
                               label="salary"

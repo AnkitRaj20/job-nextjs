@@ -47,17 +47,17 @@ const page = () => {
   };
 
   return (
-    <div className="bg-white">
+    <div className="bg-white dark:bg-dark dark:text-white rounded">
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-wrap w-full mb-20">
             <div className="lg:w-1/2 w-full mb-6 lg:mb-0">
-              <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
+              <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900 dark:text-white">
                 Find jobs that are suitable for you
               </h1>
               <div className="h-1 w-20 bg-indigo-500 rounded"></div>
             </div>
-            <p className="lg:w-1/2 w-full leading-relaxed text-gray-500">
+            <p className="lg:w-1/2 w-full leading-relaxed text-gray-500 dark:text-white">
               Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical
               gentrify, subway tile poke farm-to-table. Franzen you probably
               haven't heard of them man bun deep jianbing selfies heirloom prism
@@ -111,7 +111,9 @@ const page = () => {
               {data.map((item: any) => {
                 return (
                   <div key={item._id} className=" m-5 shadow-2xl">
-                    <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg  capitalize shadow-2xl bg-gray-50 text-gray-800 ">
+                    <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg  capitalize shadow-2xl bg-gray-50 text-gray-800 
+                    dark:bg-gray-600 dark:text-white
+                    ">
                       <div className="flex space-x-4 w-72">
                         <img
                           alt=""

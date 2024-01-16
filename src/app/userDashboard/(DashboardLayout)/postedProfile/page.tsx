@@ -118,23 +118,23 @@ const page = () => {
     <div>
       {data.map((item: any) => {
         return (
-          <div key={item._id} className="p-8 bg-white shadow mt-24">
+          <div key={item._id} className="p-8 bg-white shadow mt-24 dark:bg-dark">
             <div className="grid grid-cols-1 md:grid-cols-3">
-              <div className="grid grid-cols-3 text-center order-last md:order-first mt-20 md:mt-0">
+              <div className="grid grid-cols-3 text-center order-last md:order-first mt-20 md:mt-0 dark:text-white">
                 <div>
-                  <p className="font-bold text-gray-700 text-xl">
+                  <p className="font-bold dark:text-white text-gray-700 text-xl">
                     {item.experience}
                   </p>
                   <p className="text-gray-400">Year experience</p>
                 </div>
                 <div>
-                  <p className="font-bold text-gray-700 text-xl">
+                  <p className="font-bold dark:text-white text-gray-700 text-xl">
                     {item.education}
                   </p>
                   <p className="text-gray-400">Higher Education</p>
                 </div>
                 <div>
-                  <p className="font-bold text-gray-700 text-xl">
+                  <p className="font-bold dark:text-white text-gray-700 text-xl">
                     {item.english}
                   </p>
                   <p className="text-gray-400">English Known</p>
@@ -162,6 +162,7 @@ const page = () => {
                   className="
                             h-12 rounded-full
                             hover:text-white py-2 px-4 uppercase  bg-white hover:bg-green-600 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5 
+                            dark:bg-green-400 dark:hover:bg-green-700 
                             "
                   onClick={() =>
                     setShowModal({
@@ -175,7 +176,8 @@ const page = () => {
                 </button>
                 <button
                   className=" h-12 rounded-full
-                            hover:text-white py-2 px-4 uppercase  bg-white hover:bg-red-600 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5 "
+                            hover:text-white py-2 px-4 uppercase  bg-white hover:bg-red-600 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5 
+                            dark:bg-red-400 dark:hover:bg-red-700 "
                   onClick={() =>
                     setShowDeleteModal({
                       id: item._id,
@@ -188,9 +190,9 @@ const page = () => {
               </div>
             </div>
             <div className="mt-20 text-center border-b pb-12">
-              <h1 className="text-4xl font-medium text-gray-700">
+              <h1 className="text-4xl font-medium text-gray-700 dark:text-white">
                 {name},
-                <span className="font-light text-gray-500">{item.gender}</span>
+                <span className="font-light text-gray-500 dark:text-slate-200">{item.gender}</span>
               </h1>
               <p className="inline-block py-1 px-2 rounded bg-indigo-50 text-indigo-700 text-lg font-bold tracking-widest mb-2">
                 Role: {item.role}
@@ -205,9 +207,9 @@ const page = () => {
               </div>
 
               <div>
-                <a className=" inline-flex items-center mt-2 md:mb-2 lg:mb-0 font-medium space-x-5">
+                <a className=" inline-flex items-center mt-2 md:mb-2 lg:mb-0 font-medium space-x-5 ">
                   <IconPhoneCall />
-                  <p className="leading-relaxed text-base text-gray-500">
+                  <p className="leading-relaxed text-base text-gray-500 dark:text-white">
                     {item.mobile}
                   </p>
                 </a>
@@ -215,7 +217,7 @@ const page = () => {
               <div>
                 <a className=" inline-flex items-center mt-2 md:mb-2 lg:mb-0 font-medium space-x-5">
                   <IconClock />
-                  <p className="leading-relaxed text-base text-gray-500">
+                  <p className="leading-relaxed text-base text-gray-500 dark:text-white">
                     {item.jobType}
                   </p>
                 </a>
@@ -223,7 +225,7 @@ const page = () => {
               <div>
                 <a className=" inline-flex items-center mt-2 md:mb-2 lg:mb-0 font-medium space-x-5">
                   <IconCurrencyRupee />
-                  <p className="leading-relaxed text-base text-gray-500">
+                  <p className="leading-relaxed text-base text-gray-500 dark:text-white">
                     {item.salary}
                   </p>
                 </a>

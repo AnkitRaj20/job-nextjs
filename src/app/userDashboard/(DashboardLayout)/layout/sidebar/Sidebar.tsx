@@ -82,7 +82,8 @@ const Sidebar = ({
       {/* Logo */}
       {/* ------------------------------------------- */}
       <Box px={2} py={2}>
-        <Logo />
+        {/* <Logo /> */}
+        <h1 className="text-center font-extrabold text-indigo-500 py-5">DASHBOARD</h1>
       </Box>
       {/* ------------------------------------------- */}
       {/* Sidebar For Mobile */}
