@@ -4,7 +4,7 @@ import React from "react";
 import img from "../../../public/images/logos/NayiNaukari.png";
 import Image from "next/image";
 
-const page = () => {
+const Page = () => {
   return (
     <div>
       <Navbar />
@@ -82,4 +82,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

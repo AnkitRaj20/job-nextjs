@@ -2,7 +2,7 @@
 import axios from "axios";
 import  { useEffect, useState } from "react";
 
-const page = () => {
+const Page = () => {
   const [search, setSearch] = useState("");
   const [data, setData] = useState([]);
 
@@ -205,4 +205,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

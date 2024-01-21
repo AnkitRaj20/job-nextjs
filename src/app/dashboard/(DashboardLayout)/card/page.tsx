@@ -4,7 +4,7 @@ import {
   } from "@tabler/icons-react";
   
 
-const page = () => {
+const Page = () => {
   return (
     <div>
         <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-md bg-gray-50 text-gray-800">
@@ -39,4 +39,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

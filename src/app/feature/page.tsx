@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar2";
 import Footer from "@/components/Footer";
 
-const page = () => {
+const Page = () => {
   return (
     <div>
       <Navbar />
@@ -146,4 +146,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

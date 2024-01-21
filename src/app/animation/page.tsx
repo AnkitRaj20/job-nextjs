@@ -3,7 +3,7 @@ import React from 'react'
 import Lottie from "lottie-react";
 import anime from "./ani.json"
 
-const page = () => {
+const Page = () => {
   return (
     <div className='min-h-screen'>
         <Lottie animationData={anime} />
@@ -11,4 +11,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

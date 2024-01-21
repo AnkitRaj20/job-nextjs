@@ -22,7 +22,7 @@ import BaseCard from "@/app/dashboard/(DashboardLayout)/components/shared/BaseCa
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const page = () => {
+const Page = () => {
   const [id, setId] = useState("");
   const [data, setData] = useState({
     id: "",
@@ -203,4 +203,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -19,7 +19,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 connect();
 
-const page = () => {
+const Page = () => {
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [data, setData]: any = useState([]);
@@ -505,4 +505,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

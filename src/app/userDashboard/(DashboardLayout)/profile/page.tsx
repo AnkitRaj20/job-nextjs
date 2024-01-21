@@ -18,7 +18,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const page = () => {
+const Page = () => {
   const [id, setId] = useState("");
   const [checkProfilePosted, setcheckProfilePosted] = useState(false);
   const [data, setData] = useState({
@@ -464,4 +464,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

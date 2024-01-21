@@ -9,7 +9,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 import { useForm } from "react-hook-form";
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const {
@@ -342,4 +342,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

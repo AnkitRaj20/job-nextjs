@@ -6,7 +6,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 connect();
 
-const page = () => {
+const Page = () => {
   const [search, setSearch] = useState("");
   const [data, setData] = useState([]);
 
@@ -205,4 +205,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

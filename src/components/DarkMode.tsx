@@ -11,7 +11,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-const page = () => {
+const Page = () => {
   const { setTheme } = useTheme();
   return (
     <div className="flex items-center justify-between w-30 h-30 mt-2">
@@ -40,4 +40,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
