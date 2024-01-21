@@ -75,6 +75,7 @@ const page = () => {
             >
               <div>
                 <TextField
+                className="dark:bg-slate-200"
                   required
                   id="id"
                   label="Employee Id"
@@ -83,6 +84,7 @@ const page = () => {
                   value={data.employerId}
                 />
                 <TextField
+                className="dark:bg-slate-200"
                   required
                   id="role"
                   label="Role"
@@ -95,6 +97,7 @@ const page = () => {
                   }}
                 />
                 <TextField
+                className="dark:bg-slate-200"
                   required
                   id="location"
                   label="Location"
@@ -107,6 +110,7 @@ const page = () => {
                   }}
                 />
                 <TextField
+                className="dark:bg-slate-200"
                   id="minEducation"
                   label="Minimum Education"
                   value={data.education}
@@ -120,6 +124,7 @@ const page = () => {
 
                 <div>
                   <TextField
+                  className="dark:bg-slate-200"
                     id="experience"
                     label="Experience"
                     variant="outlined"
@@ -132,6 +137,7 @@ const page = () => {
                     }}
                   />
                   <TextField
+                  className="dark:bg-slate-200"
                     required
                     id="salary"
                     label="Salary"
@@ -145,6 +151,7 @@ const page = () => {
                     }}
                   />
                   <TextField
+                  className="dark:bg-slate-200"
                     required
                     id="standard-number"
                     label="Mobile Number"
@@ -158,6 +165,7 @@ const page = () => {
                     }}
                   />
                   <TextField
+                  className="dark:bg-slate-200"
                     id="english"
                     label="English"
                     variant="outlined"

@@ -5,24 +5,24 @@ export default   () => {
   const testimonials = [
     {
       avatar: "https://api.uifaces.co/our-content/donated/xZ4wg2Xj.jpg",
-      name: "Martin escobar",
-      title: "Founder of meta",
+      name: "Susan Parker",
+      title: "Job Seeker",
       quote:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc et est hendrerit, porta nunc vitae, gravida justo. Nunc fermentum magna lorem, euismod volutpat arcu volutpat et.",
+        "I was struggling to find the right job for my skill set. Thanks to NayiNaukri, I not only discovered numerous opportunities. The user-friendly interface and personalized job recommendations made my job search efficient and effective. Within weeks, I secured a position that aligned perfectly with my career goals."
     },
     {
       avatar: "https://randomuser.me/api/portraits/women/79.jpg",
-      name: "Angela stian",
-      title: "Product designer",
+      name: "Angelina Roy",
+      title: "Job Provider",
       quote:
-        "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout, that the point of using Lorem Ipsum.",
+        "The ease of posting jobs and looking user profiles has streamlined my hiring process. I've successfully hired skilled person who perfectly fit my work culture and requirement. NayiNaukri has become our go-to resource for finding quality candidates",
     },
     {
       avatar: "https://randomuser.me/api/portraits/men/86.jpg",
-      name: "Karim ahmed",
-      title: "DevOp engineer",
+      name: "Karim Khan",
+      title: "Career Changer",
       quote:
-        "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati ",
+        "Switching to a new career can be very difficult, but NayiNaukri made the process surprisingly smooth for me.It gave me a list of jobs that suits my skills.I'm now working in my new role, and I credit NayiNaukri for providing the resources and opportunities that empowered my successful transition. ",
     },
   ];
 

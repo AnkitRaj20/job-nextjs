@@ -50,6 +50,10 @@ const page = () => {
         mobile: response.data.mobile,
         email: response.data.email,
       });
+      if (typeof window !== 'undefined') {
+        // Perform localStorage action
+        localStorage.setItem("name" , response.data.firstName);
+      }
     } catch (error: any) {
       console.log(error.response.data.error);
       // toast.error(error.response.data.error);
@@ -92,6 +96,7 @@ const page = () => {
           >
             <div>
               <TextField
+              className="dark:bg-slate-200"
                 required
                 id="firstName"
                 label="First Name"
@@ -104,6 +109,7 @@ const page = () => {
                 }}
               />
               <TextField
+              className="dark:bg-slate-200"
                 id="middleName"
                 label="Middle Name"
                 value={data.middleName}
@@ -115,6 +121,7 @@ const page = () => {
                 }}
               />
               <TextField
+              className="dark:bg-slate-200"
                 required
                 id="lastName"
                 label="Last Name"
@@ -129,6 +136,7 @@ const page = () => {
 
               <div>
                 <TextField
+                className="dark:bg-slate-200"
                   required
                   id="email-basic"
                   label="Email"
@@ -142,6 +150,7 @@ const page = () => {
                   }}
                 />
                 <TextField
+                className="dark:bg-slate-200"
                   id="standard-number"
                   label="Number"
                   type="number"

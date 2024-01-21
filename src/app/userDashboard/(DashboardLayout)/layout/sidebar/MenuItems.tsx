@@ -1,9 +1,24 @@
 import {
-  IconUserCircle,IconEyeTable,IconLogout2,IconAddressBook, IconCircleDot, IconHome, IconInfoCircle, IconLayout, IconLayoutGrid, IconPhoto, IconPoint, IconStar, IconTable, IconUser
+  IconUserCircle,
+  IconEyeTable,
+  IconLogout2,
+  IconAddressBook,
+  IconCircleDot,
+  IconHome,
+  IconInfoCircle,
+  IconLayout,
+  IconLayoutGrid,
+  IconPhoto,
+  IconPoint,
+  IconStar,
+  IconTable,
+  IconUser,
 } from "@tabler/icons-react";
 
 import { uniqueId } from "lodash";
 
+const url = window.location.href;
+const val = url.substring(url.lastIndexOf("/") + 1);
 
 const Menuitems = [
   // {
@@ -36,8 +51,6 @@ const Menuitems = [
     icon: IconLogout2,
     href: "/userDashboard/logout",
   },
- 
- 
 ];
 
 export default Menuitems;

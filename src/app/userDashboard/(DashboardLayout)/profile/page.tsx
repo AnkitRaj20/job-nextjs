@@ -9,12 +9,14 @@ import {
   FormControl,
   Button,
   Box,
+  TextareaAutosize
 } from "@mui/material";
 
 import BaseCard from "@/app/userDashboard/(DashboardLayout)/components/shared/BaseCard";
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const page = () => {
   const [id, setId] = useState("");
@@ -26,8 +28,8 @@ const page = () => {
     lastName: "",
     mobile: "",
     email: "",
-    address : "",
-    gender: ""
+    address: "",
+    gender: "",
   });
   const [postProfile, setPostProfile] = useState({
     role: "",
@@ -36,7 +38,7 @@ const page = () => {
     english: "",
     jobType: "",
     salary: "",
-  })
+  });
   const [showModal, setShowModal] = useState({
     visible: false,
     userId: "",
@@ -50,17 +52,19 @@ const page = () => {
 
   const checkPostedProfile = async () => {
     try {
-      const response = await axios.post("/api/users/checkPostedProfile",{
-        _id:id
+      const response = await axios.post("/api/users/checkPostedProfile", {
+        _id: id,
       });
-      console.log("checkPostedProfile::"+response.data.data);
-      if(response.data.data){
+      console.log("checkPostedProfile::" + response.data.data);
+      if (response.data.data) {
         setcheckProfilePosted(true);
       }
+      toast.success("Profile Posted successfully");
     } catch (error: any) {
       console.log(error.response.data.error);
+      toast.error(error.response.data.error);
     }
-  }
+  };
 
   const fetchData = async () => {
     console.log("id::" + id);
@@ -79,10 +83,10 @@ const page = () => {
         address: response.data.data.address,
         gender: response.data.data.gender,
       });
-      localStorage.setItem("name" , response.data.data.firstName);
+      localStorage.setItem("name", response.data.data.firstName);
     } catch (error: any) {
       console.log(error.response.data.error);
-      // toast.error(error.response.data.data.error);
+      toast.error(error.response.data.error);
     }
   };
   useEffect(() => {
@@ -130,20 +134,20 @@ const page = () => {
 
   return (
     <>
-      <Grid container spacing={3} >
-        <Grid item xs={12} lg={12}>
+      <Grid container spacing={3}>
+        <Grid item xs={12} lg={9}>
           <BaseCard title="Profile">
             <Box
               component="form"
               sx={{
-                "& .MuiTextField-root": { m: 1.8, width: "30ch" },
+                "& .MuiTextField-root": { m: 2.5, width: "20ch" },
               }}
               noValidate
               autoComplete="off"
             >
               <div>
                 <TextField
-                className="dark:bg-slate-200"
+                  className="dark:bg-slate-200"
                   required
                   id="firstName"
                   label="First Name"
@@ -156,7 +160,7 @@ const page = () => {
                   }}
                 />
                 <TextField
-                className="dark:bg-slate-200"
+                  className="dark:bg-slate-200"
                   id="middleName"
                   label="Middle Name"
                   value={data.middleName}
@@ -168,7 +172,7 @@ const page = () => {
                   }}
                 />
                 <TextField
-                className="dark:bg-slate-200"
+                  className="dark:bg-slate-200"
                   required
                   id="lastName"
                   label="Last Name"
@@ -181,48 +185,36 @@ const page = () => {
                   }}
                 />
 
-                <div>
-                  <TextField
-                  className="dark:bg-slate-200"
-                    required
-                    id="email-basic"
-                    label="Email"
-                    variant="outlined"
-                    value={data.email}
-                    onChange={(e) => {
-                      setData({
-                        ...data,
-                        email: e.target.value,
-                      });
-                    }}
-                  />
-                  <TextField
-                  className="dark:bg-slate-200"
-                    id="standard-number"
-                    label="Number"
-                    type="number"
-                    value={data.mobile}
-                    onChange={(e) => {
-                      setData({
-                        ...data,
-                        mobile: e.target.value,
-                      });
-                    }}
-                  />
-                  <TextField
+                {/* <div> */}
+                <TextField
                   className="dark:bg-slate-200"
                   required
-                  id="address"
-                  label="Address"
-                  value={data.address}
+                  id="email-basic"
+                  label="Email"
+                  variant="outlined"
+                  value={data.email}
                   onChange={(e) => {
                     setData({
                       ...data,
-                      address: e.target.value.toLowerCase(),
+                      email: e.target.value,
                     });
                   }}
                 />
-                  <TextField
+                <TextField
+                  className="dark:bg-slate-200"
+                  id="standard-number"
+                  label="Number"
+                  type="number"
+                  value={data.mobile}
+                  onChange={(e) => {
+                    setData({
+                      ...data,
+                      mobile: e.target.value,
+                    });
+                  }}
+                />
+
+                <TextField
                   className="dark:bg-slate-200"
                   required
                   disabled
@@ -237,34 +229,20 @@ const page = () => {
                   }}
                 />
 
-                  {/* <FormControl>
-                  <FormLabel id="demo-radio-buttons-group-label">
-                    Gender
-                  </FormLabel>
-                  <RadioGroup
-                    row
-                    aria-labelledby="demo-radio-buttons-group-label"
-                    defaultValue={data.gender}
-                    name="radio-buttons-group"
-                  >
-                    <FormControlLabel
-                      value="female"
-                      control={<Radio />}
-                      label="Female"
-                    />
-                    <FormControlLabel
-                      value="male"
-                      control={<Radio />}
-                      label="Male"
-                    />
-                    <FormControlLabel
-                      value="other"
-                      control={<Radio />}
-                      label="Other"
-                    />
-                  </RadioGroup>
-                </FormControl>  */}
-                </div>
+                <TextField
+                  className="dark:bg-slate-200"
+                  required
+                  id="address"
+                  label="Address"
+                  value={data.address}
+                  onChange={(e) => {
+                    setData({
+                      ...data,
+                      address: e.target.value.toLowerCase(),
+                    });
+                  }}
+                />
+                {/* </div> */}
                 <div className="flex justify-between">
                   <div>
                     <Button variant="text" color="primary" onClick={update}>
@@ -294,6 +272,30 @@ const page = () => {
             </Box>
           </BaseCard>
         </Grid>
+
+        {/* User Card */}
+        <Grid item xs={12} lg={3} className="grid gap-4 content-center">
+          <div className="flex flex-col  max-w-xs p-6 shadow-md rounded-xl sm:px-12 dark:bg-gray-900 dark:text-gray-100">
+            <img
+              src="https://source.unsplash.com/150x150/?portrait?3"
+              alt=""
+              className="w-32 h-32 mx-auto rounded-full dark:bg-gray-500 aspect-square"
+            />
+            <div className="space-y-4 text-center divide-y dark:divide-gray-700">
+              <div className="my-2 space-y-1">
+                <h2 className="text-xl font-semibold sm:text-2xl">
+                  {data.firstName + " " + data.middleName + " " + data.lastName}
+                </h2>
+                <p className="px-5 text-xs sm:text-base dark:text-gray-400">
+                  {data.email}
+                </p>
+              </div>
+              <div className="flex justify-center pt-2 space-x-4 align-center">
+                {data.address}
+              </div>
+            </div>
+          </div>
+        </Grid>
       </Grid>
 
       {/* Modal */}
@@ -318,14 +320,14 @@ const page = () => {
                           <Box
                             component="form"
                             sx={{
-                              "& .MuiTextField-root": { m: 1.8, width: "30ch" },
+                              "& .MuiTextField-root": { m: 1.8, width: "25ch" },
                             }}
                             noValidate
                             autoComplete="off"
                           >
                             <TextField
-                            className="dark:bg-slate-200"
-                            required
+                              className="dark:bg-slate-200"
+                              required
                               id="role"
                               label="Role"
                               type="text"
@@ -338,8 +340,7 @@ const page = () => {
                               }}
                             />
                             <TextField
-                            className="dark:bg-slate-200"
-                            
+                              className="dark:bg-slate-200"
                               id="education"
                               label="Education"
                               type="text"
@@ -352,8 +353,7 @@ const page = () => {
                               }}
                             />
                             <TextField
-                            className="dark:bg-slate-200"
-                            
+                              className="dark:bg-slate-200"
                               id="experience"
                               label="Experience"
                               type="text"
@@ -366,8 +366,7 @@ const page = () => {
                               }}
                             />
                             <TextField
-                            className="dark:bg-slate-200"
-                            
+                              className="dark:bg-slate-200"
                               id="English"
                               label="English"
                               type="text"
@@ -380,8 +379,8 @@ const page = () => {
                               }}
                             />
                             <TextField
-                            className="dark:bg-slate-200"
-                            required
+                              className="dark:bg-slate-200"
+                              required
                               id="standard-number"
                               label="salary"
                               type="text"
@@ -394,39 +393,38 @@ const page = () => {
                               }}
                             />
                             <FormControl>
-                    <FormLabel id="demo-radio-buttons-group-label">
-                      Job Type
-                    </FormLabel>
-                    <RadioGroup
-                      row
-                      aria-labelledby="demo-radio-buttons-group-label"
-                      defaultValue="full"
-                      name="radio-buttons-group"
-                      
-                  onChange={(e) => {
-                    setPostProfile({
-                      ...postProfile,
-                      jobType: e.target.value,
-                    });
-                  }}
-                    >
-                      <FormControlLabel
-                        value="Full Time"
-                        control={<Radio />}
-                        label="Full Time"
-                      />
-                      <FormControlLabel
-                        value="Part Time"
-                        control={<Radio />}
-                        label="Part Time"
-                      />
-                      <FormControlLabel
-                        value="Both Full Time and Part Time"
-                        control={<Radio />}
-                        label="Both Full Time and Part Time"
-                      />
-                    </RadioGroup>
-                  </FormControl>
+                              <FormLabel id="demo-radio-buttons-group-label">
+                                Job Type
+                              </FormLabel>
+                              <RadioGroup
+                                row
+                                aria-labelledby="demo-radio-buttons-group-label"
+                                defaultValue="full"
+                                name="radio-buttons-group"
+                                onChange={(e) => {
+                                  setPostProfile({
+                                    ...postProfile,
+                                    jobType: e.target.value,
+                                  });
+                                }}
+                              >
+                                <FormControlLabel
+                                  value="Full Time"
+                                  control={<Radio />}
+                                  label="Full Time"
+                                />
+                                <FormControlLabel
+                                  value="Part Time"
+                                  control={<Radio />}
+                                  label="Part Time"
+                                />
+                                <FormControlLabel
+                                  value="Both Full Time and Part Time"
+                                  control={<Radio />}
+                                  label="Both Full Time and Part Time"
+                                />
+                              </RadioGroup>
+                            </FormControl>
                           </Box>
                         </Grid>
                       </Grid>
@@ -451,7 +449,6 @@ const page = () => {
                       "
                       type="button"
                       onClick={() => postProfileButton(showModal)}
-                      
                     >
                       Post Profile
                     </button>

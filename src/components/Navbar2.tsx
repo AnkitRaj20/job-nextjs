@@ -91,10 +91,10 @@ const Page = () => {
             About
           </Link>
           <Link
-            href="/"
+            href="/feature"
             className="mr-5 flex lg:py-3  hover:text-green-500 hover:underline"
           >
-            Services
+            Features
           </Link>
           <Link
             href="/contact"

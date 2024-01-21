@@ -6,8 +6,8 @@ import { useRouter } from 'next/navigation'
 const page = () => {
   const router = useRouter()
   const logout = async() => {
+    localStorage.removeItem('name');
     await axios.get('/api/users/logout');
-    alert('logged out');
     router.push('/employerLogin');
 }
   useEffect(() => {

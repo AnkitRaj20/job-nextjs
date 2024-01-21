@@ -14,16 +14,23 @@ import {
   ListItemText,
 } from "@mui/material";
 
+import DarkMode from "@/components/DarkMode"
+
 import { Stack } from "@mui/system";
 import {
   IconChevronDown,
   IconCreditCard,
   IconCurrencyDollar,
+  IconLogout,
   IconMail,
   IconShield,
 } from "@tabler/icons-react";
+import { useRouter } from "next/navigation";
 
-const Profile = () => {
+import { NextRequest } from 'next/server'
+
+const Profile = (request: NextRequest) => {
+  const router = useRouter();
   const [anchorEl2, setAnchorEl2] = useState(null);
   const handleClick2 = (event: any) => {
     setAnchorEl2(event.currentTarget);
@@ -31,6 +38,13 @@ const Profile = () => {
   const handleClose2 = () => {
     setAnchorEl2(null);
   };
+
+  const logout = () => {
+    router.push(`/dashboard/logout`);
+  };
+
+  
+  const name = localStorage.getItem("name");
 
   const theme = useTheme();
   const primary = theme.palette.primary.main;
@@ -83,6 +97,7 @@ const Profile = () => {
         }}
         onClick={handleClick2}
       >
+       
         <Avatar
           src={"/images/users/user2.jpg"}
           alt={"ProfileImg"}
@@ -115,11 +130,12 @@ const Profile = () => {
               ml: 1,
             }}
           >
-            Julia
+            {name}
           </Typography>
           <IconChevronDown width="20" height="20" />
         </Box>
       </IconButton>
+      
       {/* ------------------------------------------- */}
       {/* Message Dropdown */}
       {/* ------------------------------------------- */}
@@ -136,36 +152,30 @@ const Profile = () => {
             width: "360px",
             p: 2,
             pb: 2,
-            pt:0
+            pt: 0,
           },
         }}
       >
-
         <Box pt={0}>
-
           <List>
-            <ListItemButton component="a" href="#">
+            <ListItemButton component="a" href="/dashboard/profile">
               <ListItemText primary="Edit Profile" />
             </ListItemButton>
-            <ListItemButton component="a" href="#">
-              <ListItemText primary="Account" />
-            </ListItemButton>
-            <ListItemButton component="a" href="#">
-              <ListItemText primary="Change Password" />
-            </ListItemButton>
-            <ListItemButton component="a" href="#">
-              <ListItemText primary="My Settings" />
+            <ListItemButton component="a" href="/dashboard/postedJob">
+              <ListItemText primary="Posted Jobs" />
             </ListItemButton>
           </List>
-
         </Box>
+              
+          
         <Divider />
         <Box mt={2}>
-          <Button fullWidth variant="contained" color="primary">
+          
+          <Button fullWidth variant="outlined" color="error" onClick={logout}>
             Logout
           </Button>
+          <DarkMode />
         </Box>
-
       </Menu>
     </Box>
     

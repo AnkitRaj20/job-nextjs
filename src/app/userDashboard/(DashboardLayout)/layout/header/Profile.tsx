@@ -1,6 +1,8 @@
+"use client"
 import React, { useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import Link from "next/link";
+import { useEffect } from "react";
 import {
   Box,
   Menu,
@@ -43,8 +45,13 @@ const Profile = (request: NextRequest) => {
     router.push(`/userDashboard/logout`);
   };
 
+  // let userName = "";
+  const userName = localStorage.getItem("name");
+  // useEffect(() => {
+  //   userName = localStorage.getItem("name") ?? "";
+  // }, [])
   
-  const name = localStorage.getItem("name");
+  
 
   const theme = useTheme();
   const primary = theme.palette.primary.main;
@@ -130,7 +137,8 @@ const Profile = (request: NextRequest) => {
               ml: 1,
             }}
           >
-            {name}
+            
+            {userName}
           </Typography>
           <IconChevronDown width="20" height="20" />
         </Box>

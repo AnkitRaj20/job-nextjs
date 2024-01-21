@@ -6,7 +6,8 @@ import toast, { Toaster } from "react-hot-toast";
 
 connect();
 
-const page = () => {
+const page = ({params}:any) => {
+    
   const [search, setSearch] = useState("");
   const [data, setData] = useState([]);
 
@@ -22,12 +23,24 @@ const page = () => {
   };
 
   useEffect(() => {
-    fetchData();
+    searchHome(params.id);
   }, []);
 
+  const searchHome = async (data: any) => {
+    try {
+      const response = await axios.post("/api/users/getJobByTitle", {
+        role: data,
+      });
+      console.log("Success", response.data.data);
+
+      setData(response.data.data);
+    } catch (error: any) {
+      console.log(error.response.data.error);
+      toast.error(error.response.data.error);
+    }
+  };
   const searchButton = async (e: any) => {
     e.preventDefault();
-    console.log("search::" + search);
     try {
       if (search === "") {
         fetchData();
@@ -41,7 +54,7 @@ const page = () => {
       setData(response.data.data);
     } catch (error: any) {
       console.log(error.response.data.error);
-      // toast.error(error.response.data.error);
+      toast.error(error.response.data.error);
     }
   };
 
@@ -194,6 +207,7 @@ const page = () => {
                   <h1 className="flex-grow sm:pr-16 text-2xl font-medium title-font text-gray-900">
                     OOps.Looks like no posted job.
                   </h1>
+
                 </div>
               </div>
             </section>
