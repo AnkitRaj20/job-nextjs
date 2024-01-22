@@ -33,7 +33,7 @@ const Menuitems = [
     id: uniqueId(),
     title: "Posted Profile",
     icon: IconAddressBook,
-    href: "/userdashboard/postedProfile",
+    href: "/userdashboard/postedprofile",
   },
   {
     id: uniqueId(),
