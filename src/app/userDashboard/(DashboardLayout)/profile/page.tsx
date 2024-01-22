@@ -84,7 +84,10 @@ const Page = () => {
         address: response.data.data.address,
         gender: response.data.data.gender,
       });
-      localStorage.setItem("name", response.data.data.firstName);
+      if (typeof window !== 'undefined') {
+        // Perform localStorage action
+        localStorage.setItem("name", response.data.data.firstName);
+      }
     } catch (error: any) {
       console.log(error.response.data.error);
       toast.error(error.response.data.error);

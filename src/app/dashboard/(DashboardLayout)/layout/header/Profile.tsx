@@ -43,8 +43,11 @@ const Profile = (request: NextRequest) => {
     router.push(`/dashboard/logout`);
   };
 
-  
-  const name = localStorage.getItem("name");
+  let name=""
+  if (typeof window !== 'undefined') {
+    // Perform localStorage action
+    name = localStorage.getItem("name") ?? "";
+  }
 
   const theme = useTheme();
   const primary = theme.palette.primary.main;

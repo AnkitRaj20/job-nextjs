@@ -17,8 +17,12 @@ import {
 
 import { uniqueId } from "lodash";
 
-const url = window.location.href;
-const val = url.substring(url.lastIndexOf("/") + 1);
+if(typeof window !== 'undefined')
+{
+// Your client-side code that uses window goes here
+// const url = window.location.href;
+// const val = url.substring(url.lastIndexOf("/") + 1);
+}
 
 const Menuitems = [
   // {
