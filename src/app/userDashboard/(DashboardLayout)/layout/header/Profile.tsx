@@ -42,7 +42,7 @@ const Profile = (request: NextRequest) => {
   };
 
   const logout = () => {
-    router.push(`/userDashboard/logout`);
+    router.push(`/userdashboard/logout`);
   };
 
   let userName="";
@@ -164,10 +164,10 @@ const Profile = (request: NextRequest) => {
       >
         <Box pt={0}>
           <List>
-            <ListItemButton component="a" href="/userDashboard/profile">
+            <ListItemButton component="a" href="/userdashboard/profile">
               <ListItemText primary="Edit Profile" />
             </ListItemButton>
-            <ListItemButton component="a" href="/userDashboard/jobs">
+            <ListItemButton component="a" href="/userdashboard/jobs">
               <ListItemText primary="jobs" />
             </ListItemButton>
           </List>

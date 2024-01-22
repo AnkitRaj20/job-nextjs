@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import avatar from "../../../../../public/images/avatar/avatar5.png"
 
-import BaseCard from "@/app/userDashboard/(DashboardLayout)/components/shared/BaseCard";
+import BaseCard from "@/app/userdashboard/(DashboardLayout)/components/shared/BaseCard";
 
 import { useEffect, useState } from "react";
 import axios from "axios";

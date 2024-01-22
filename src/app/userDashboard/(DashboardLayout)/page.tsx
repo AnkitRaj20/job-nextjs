@@ -1,11 +1,11 @@
 'use client'
 import { Grid, Box } from '@mui/material';
-import PageContainer from '@/app/userDashboard/(DashboardLayout)/components/container/PageContainer';
+import PageContainer from '@/app/userdashboard/(DashboardLayout)/components/container/PageContainer';
 // components
-import SalesOverview from '@/app/userDashboard/(DashboardLayout)/components/dashboard/SalesOverview';
-import DailyActivity from '@/app/userDashboard/(DashboardLayout)/components/dashboard/DailyActivity';
-import ProductPerformance from '@/app/userDashboard/(DashboardLayout)/components/dashboard/ProductPerformance';
-import BlogCard from '@/app/userDashboard/(DashboardLayout)/components/dashboard/Blog';
+import SalesOverview from '@/app/userdashboard/(DashboardLayout)/components/dashboard/SalesOverview';
+import DailyActivity from '@/app/userdashboard/(DashboardLayout)/components/dashboard/DailyActivity';
+import ProductPerformance from '@/app/userdashboard/(DashboardLayout)/components/dashboard/ProductPerformance';
+import BlogCard from '@/app/userdashboard/(DashboardLayout)/components/dashboard/Blog';
 
 const Dashboard = () => {
   return (
