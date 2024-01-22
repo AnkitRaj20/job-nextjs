@@ -1,18 +1,10 @@
 import {
   IconUserCircle,
-  IconEyeTable,
+
   IconLogout2,
   IconAddressBook,
-  IconCircleDot,
-  IconHome,
-  IconInfoCircle,
-  IconLayout,
-  IconLayoutGrid,
-  IconPhoto,
-  IconPoint,
-  IconStar,
-  IconTable,
-  IconUser,
+
+ 
 } from "@tabler/icons-react";
 
 import { uniqueId } from "lodash";
