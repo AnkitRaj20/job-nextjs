@@ -21,25 +21,25 @@ const Menuitems = [
     id: uniqueId(),
     title: "Profile",
     icon: IconUserCircle,
-    href: "/userDashboard/profile",
+    href: "/userdashboard/profile",
   },
   {
     id: uniqueId(),
     title: "Job",
     icon: IconAddressBook,
-    href: "/userDashboard/jobs",
+    href: "/userdashboard/jobs",
   },
   {
     id: uniqueId(),
     title: "Posted Profile",
     icon: IconAddressBook,
-    href: "/userDashboard/postedProfile",
+    href: "/userdashboard/postedProfile",
   },
   {
     id: uniqueId(),
     title: "Logout",
     icon: IconLogout2,
-    href: "/userDashboard/logout",
+    href: "/userdashboard/logout",
   },
 ];
 
