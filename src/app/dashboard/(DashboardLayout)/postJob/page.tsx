@@ -81,7 +81,7 @@ const Page = () => {
                   id="id"
                   label="Employee Id"
                   disabled
-                  hidden
+                  hidden={true}
                   value={data.employerId}
                 />
                 <TextField
