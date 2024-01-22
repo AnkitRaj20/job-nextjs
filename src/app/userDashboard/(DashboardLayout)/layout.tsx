@@ -42,7 +42,7 @@ export default function RootLayout({
         onSidebarClose={() => setMobileSidebarOpen(false)}
       />
       
-      <PageWrapper className="page-wrapper">
+      <PageWrapper className="page-wrapper dark:bg-black">
        
         <Header toggleMobileSidebar={() => setMobileSidebarOpen(true)} />
         
@@ -60,7 +60,7 @@ export default function RootLayout({
           {/* ------------------------------------------- */}
           {/* Footer */}
           {/* ------------------------------------------- */}
-          <Footer />
+          <Footer  />
         </Container>
       </PageWrapper>
     </MainWrapper>
