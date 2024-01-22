@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import {
   Grid,
@@ -95,9 +96,11 @@ const Page = () => {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
   useEffect(() => {
     checkPostedProfile();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   // Update the profile

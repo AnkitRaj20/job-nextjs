@@ -9,15 +9,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    // <html lang="en">
-    //   <body>
-        <ThemeProvider theme={baselightTheme}>
-          
-          <CssBaseline />
-          {children}
-        </ThemeProvider>
-    //   </body>
-    // </html>
+    <ThemeProvider theme={baselightTheme}>
+      <CssBaseline />
+      {children}
+    </ThemeProvider>
   );
 }
-

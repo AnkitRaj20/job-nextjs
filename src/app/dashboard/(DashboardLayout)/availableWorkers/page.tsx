@@ -1,6 +1,8 @@
 "use client";
 import axios from "axios";
+import Image from "next/image";
 import  { useEffect, useState } from "react";
+import avatar from "../../../../../public/images/avatar/avatar1.jpg"
 
 const Page = () => {
   const [search, setSearch] = useState("");
@@ -19,6 +21,7 @@ const Page = () => {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const searchButton = async (e: any) => {
@@ -108,11 +111,18 @@ const Page = () => {
                   <div key={item._id} className=" m-5 shadow-2xl">
                     <div className="flex flex-col max-w-lg p-6 space-y-6 space-x-5 overflow-hidden rounded-lg capitalize shadow-2xl bg-gray-50 text-gray-800 dark:bg-gray-600 dark:text-white">
                       <div className="flex space-x-4 w-72">
-                        <img
+                        <Image
+                        src={avatar}
+                        alt="avatar"
+                        height={100}
+                        width={100}
+                        className="object-cover w-12 h-12 rounded-full shadow bg-gray-500"
+                        />
+                        {/* <img
                           alt=""
                           src="https://source.unsplash.com/100x100/?portrait"
-                          className="object-cover w-12 h-12 rounded-full shadow bg-gray-500"
-                        />
+                          
+                        /> */}
                         <div className="flex flex-col space-y-1">
                           <a
                             rel="noopener noreferrer"

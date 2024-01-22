@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+
 const Article = () => {
   return (
     <div className="bg-white">

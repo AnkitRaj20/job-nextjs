@@ -14,8 +14,11 @@ import {
   Button,
   Box,
 } from "@mui/material";
+import avatar from "../../../../../public/images/avatar/avatar1.jpg"
+
 
 import toast, { Toaster } from "react-hot-toast";
+import Image from "next/image";
 
 connect();
 
@@ -71,10 +74,12 @@ const Page = () => {
   };
   useEffect(() => {
     getUserDetails();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const deleteIcon = async (model: any) => {
@@ -144,11 +149,14 @@ const Page = () => {
                   <div key={item._id} className="m-5 shadow-2xl">
                     <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden capitalize rounded-lg shadow-2xl bg-gray-50 text-gray-800  dark:bg-gray-600 dark:text-white">
                       <div className="flex space-x-4">
-                        <img
-                          alt=""
-                          src="https://source.unsplash.com/100x100/?portrait"
-                          className="object-cover w-12 h-12 rounded-full shadow bg-gray-500"
+                        <Image
+                        src={avatar}
+                        alt="avatar"
+                        height={100}
+                        width={100}
+                        className="object-cover w-12 h-12 rounded-full shadow bg-gray-500"
                         />
+                        
                         <div className="flex flex-col space-y-1">
                           <a
                             rel="noopener noreferrer"

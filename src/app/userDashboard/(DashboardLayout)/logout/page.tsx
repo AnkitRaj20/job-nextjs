@@ -12,6 +12,7 @@ const Page = () => {
 }
   useEffect(() => {
     logout();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 }
 

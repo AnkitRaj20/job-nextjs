@@ -1,6 +1,10 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable react/display-name */
 "use client"
 import { useState } from "react";
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default   () => {
   const testimonials = [
     {

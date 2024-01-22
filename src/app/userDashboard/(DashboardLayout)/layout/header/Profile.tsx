@@ -45,13 +45,7 @@ const Profile = (request: NextRequest) => {
     router.push(`/userDashboard/logout`);
   };
 
-  // let userName = "";
   const userName = localStorage.getItem("name");
-  // useEffect(() => {
-  //   userName = localStorage.getItem("name") ?? "";
-  // }, [])
-  
-  
 
   const theme = useTheme();
   const primary = theme.palette.primary.main;

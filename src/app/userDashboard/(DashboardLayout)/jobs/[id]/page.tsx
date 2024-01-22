@@ -24,6 +24,7 @@ const Page = ({params}:any) => {
 
   useEffect(() => {
     searchHome(params.id);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const searchHome = async (data: any) => {
