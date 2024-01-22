@@ -12,12 +12,14 @@ import {
   Box,
   TextareaAutosize
 } from "@mui/material";
+import avatar from "../../../../../public/images/avatar/avatar5.png"
 
 import BaseCard from "@/app/userDashboard/(DashboardLayout)/components/shared/BaseCard";
 
 import { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import Image from "next/image";
 
 const Page = () => {
   const [id, setId] = useState("");
@@ -282,11 +284,13 @@ const Page = () => {
         {/* User Card */}
         <Grid item xs={12} lg={3} className="grid gap-4 content-center">
           <div className="flex flex-col  max-w-xs p-6 shadow-md rounded-xl sm:px-12 dark:bg-gray-900 dark:text-gray-100">
-            <img
-              src="https://source.unsplash.com/150x150/?portrait?3"
-              alt=""
-              className="w-32 h-32 mx-auto rounded-full dark:bg-gray-500 aspect-square"
-            />
+            <Image
+            src={avatar}
+            alt="avatar"
+            // height={32}
+            // width={32}
+            className="w-32 h-32 mx-auto rounded-full dark:bg-gray-500 aspect-square"
+             />
             <div className="space-y-4 text-center divide-y dark:divide-gray-700">
               <div className="my-2 space-y-1">
                 <h2 className="text-xl font-semibold sm:text-2xl">
