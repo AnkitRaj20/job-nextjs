@@ -28,13 +28,13 @@ const Menuitems = [
     id: uniqueId(),
     title: "View Posted Job",
     icon: IconEyeTable,
-    href: "/dashboard/postedJob",
+    href: "/dashboard/postedjob",
   },
   {
     id: uniqueId(),
     title: "View Job Workers",
     icon: IconEyeTable,
-    href: "/dashboard/availableWorkers"
+    href: "/dashboard/availableworkers"
   },
   {
     id: uniqueId(),
