@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import {
   Grid,
@@ -29,6 +30,7 @@ const Page = () => {
     english: "",
     jobType: "",
   });
+  const [buttonDisabled, setButtonDisabled] = useState(false);
   const getUserDetails = async () => {
     const response = await axios.get("/api/provider/userData");
     console.log(response.data);
@@ -60,6 +62,18 @@ const Page = () => {
     }
   };
 
+  const isFieldEmpty = () => {
+    if(data.role.trim() === "" || data.location.trim() === "" || data.education.trim() === "" || data.experience.trim() === "" || data.salary.trim() === "" || data.mobile.trim() === "" || data.english.trim() === "" || data.jobType.trim() === ""){
+      setButtonDisabled(true)
+    }else{
+      setButtonDisabled(false)
+    }
+  }
+
+  useEffect(() => {
+    isFieldEmpty();
+  } ,[data] )
+
   return (
     <div>
       <Toaster />
@@ -75,18 +89,10 @@ const Page = () => {
               autoComplete="off"
             >
               <div>
+               
                 <TextField
                 className="dark:bg-slate-200"
-                  required
-                  id="id"
-                  label="Employee Id"
-                  disabled
-                  hidden={true}
-                  value={data.employerId}
-                />
-                <TextField
-                className="dark:bg-slate-200"
-                  required
+                required={true}
                   id="role"
                   label="Role"
                   value={data.role}
@@ -95,6 +101,7 @@ const Page = () => {
                       ...data,
                       role: e.target.value,
                     });
+                    
                   }}
                 />
                 <TextField
@@ -180,13 +187,12 @@ const Page = () => {
                   />
 
                   <FormControl>
-                    <FormLabel id="demo-radio-buttons-group-label">
+                    <FormLabel id="demo-radio-buttons-group-label" className="dark:text-white">
                       Job Type
                     </FormLabel>
                     <RadioGroup
                       row
                       aria-labelledby="demo-radio-buttons-group-label"
-                      defaultValue="full"
                       name="radio-buttons-group"
                       onChange={(e) => {
                         setData({
@@ -213,7 +219,7 @@ const Page = () => {
                     </RadioGroup>
                   </FormControl>
                 </div>
-                <Button variant="text" color="primary" onClick={post}>
+                <Button variant="text" color="primary" onClick={post} disabled={buttonDisabled}>
                   Post Job
                 </Button>
               </div>
