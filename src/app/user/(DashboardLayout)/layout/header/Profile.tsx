@@ -29,7 +29,8 @@ import {
 } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
 
-import { NextRequest } from 'next/server'
+import { NextRequest } from 'next/server';
+import avatar from "../../../../../../public/images/avatar/avatar5.png"
 
 const Profile = (request: NextRequest) => {
   const router = useRouter();
@@ -104,7 +105,7 @@ const Profile = (request: NextRequest) => {
       >
        
         <Avatar
-          src={"/images/users/user2.jpg"}
+          src={avatar.src}
           alt={"ProfileImg"}
           sx={{
             width: 30,

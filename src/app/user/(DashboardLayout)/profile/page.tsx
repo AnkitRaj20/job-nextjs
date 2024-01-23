@@ -10,9 +10,9 @@ import {
   FormControl,
   Button,
   Box,
-  TextareaAutosize
+  TextareaAutosize,
 } from "@mui/material";
-import avatar from "../../../../../public/images/avatar/avatar5.png"
+import avatar from "../../../../../public/images/avatar/avatar5.png";
 
 import BaseCard from "@/app/user/(DashboardLayout)/components/shared/BaseCard";
 
@@ -86,7 +86,7 @@ const Page = () => {
         address: response.data.data.address,
         gender: response.data.data.gender,
       });
-      if (typeof window !== 'undefined') {
+      if (typeof window !== "undefined") {
         // Perform localStorage action
         localStorage.setItem("name", response.data.data.firstName);
       }
@@ -237,21 +237,29 @@ const Page = () => {
                   }}
                 />
 
-                <TextField
-                  className="dark:bg-slate-200"
-                  required
-                  id="address"
-                  label="Address"
+                <label
+                  htmlFor="message"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Your Address
+                </label>
+                <textarea
+                  id="message"
                   value={data.address}
+                  rows={4}
+                  className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-slate-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   onChange={(e) => {
                     setData({
                       ...data,
                       address: e.target.value.toLowerCase(),
                     });
                   }}
-                />
+                  placeholder="Write your Address here..."
+                ></textarea>
+
+                
                 {/* </div> */}
-                <div className="flex justify-between">
+                <div className="flex justify-between mt-2">
                   <div>
                     <Button variant="text" color="primary" onClick={update}>
                       Update
@@ -285,12 +293,12 @@ const Page = () => {
         <Grid item xs={12} lg={3} className="grid gap-4 content-center">
           <div className="flex flex-col  max-w-xs p-6 shadow-md rounded-xl sm:px-12 dark:bg-gray-900 dark:text-gray-100">
             <Image
-            src={avatar}
-            alt="avatar"
-            // height={32}
-            // width={32}
-            className="w-32 h-32 mx-auto rounded-full dark:bg-gray-500 aspect-square"
-             />
+              src={avatar}
+              alt="avatar"
+              // height={32}
+              // width={32}
+              className="w-32 h-32 mx-auto rounded-full dark:bg-gray-500 aspect-square"
+            />
             <div className="space-y-4 text-center divide-y dark:divide-gray-700">
               <div className="my-2 space-y-1">
                 <h2 className="text-xl font-semibold sm:text-2xl">
