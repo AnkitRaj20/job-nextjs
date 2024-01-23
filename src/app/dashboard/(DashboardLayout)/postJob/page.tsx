@@ -219,7 +219,7 @@ const Page = () => {
                     </RadioGroup>
                   </FormControl>
                 </div>
-                <Button variant="text" color="primary" onClick={post} disabled={buttonDisabled}>
+                <Button variant="text" color="primary" onClick={post} disabled={buttonDisabled} className="disabled:text-gray-300 disabled:cursor-not-allowed">
                   Post Job
                 </Button>
               </div>

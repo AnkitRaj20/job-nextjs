@@ -211,7 +211,7 @@ const Page = () => {
                 </FormControl> */}
 
                 <div>
-                  <Button variant="text"  color="primary" onClick={update} disabled={buttonDisabled}>
+                  <Button variant="text"  color="primary" onClick={update} disabled={buttonDisabled} className="disabled:text-gray-300 disabled:cursor-not-allowed">
                     Update
                   </Button>
                 </div>
