@@ -11,7 +11,7 @@ const Hero2 = () => {
  const [search, setSearch] = useState("");
   const jobSearch = (data:string) => {
     console.log(data)
-    router.push(`/userdashboard/jobs/${search}`);
+    router.push(`/user/jobs/${search}`);
   }
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4   place-items-center   bg-white dark:bg-dark">

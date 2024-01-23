@@ -13,7 +13,7 @@ export function middleware(request: NextRequest) {
 
       const isEmployeeDashboard = path === '/dashboard/profile' || path=='/dashboard/postJob' || path=='/dashboard/postedJob'
       
-      const isUserDashboard = path === '/userdashboard/jobs' || path=='/userdashboard/profile' 
+      const isUserDashboard = path === '/user/jobs' || path=='/user/profile' 
 
      const token = request.cookies.get('token') ?.value || "";
     
@@ -24,12 +24,12 @@ export function middleware(request: NextRequest) {
     //  LOGGED IN AS USER
      if(isPathPublic && token && isUser) {
         return NextResponse.redirect(new URL(
-            "/userdashboard/profile", request.nextUrl
+            "/user/profile", request.nextUrl
         ))
     }
      if(isEmployeeDashboard && token && isUser) {
         return NextResponse.redirect(new URL(
-            "/userdashboard/profile", request.nextUrl
+            "/user/profile", request.nextUrl
         ))
     }
     
@@ -61,8 +61,8 @@ export const config = {
     
     "/dashboard",
     "/dashboard/:path*",
-    "/userdashboard",
-    "/userdashboard/:path*",
+    "/user",
+    "/user/:path*",
     "/login",
     "/employerLogin",
     "/signup",
