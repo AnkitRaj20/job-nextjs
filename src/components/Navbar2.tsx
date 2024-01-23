@@ -35,7 +35,7 @@ const Page = () => {
   }, []);
 
   return (
-    <div className="flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg text-gray-700 bg-white shadow-lg sticky  shadow-indigo-500/40  dark:bg-slate-900">
+    <div className="flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg text-gray-700 bg-white shadow-lg sticky  shadow-indigo-500/40 dark:shadow-indigo-300/40  dark:bg-slate-900">
       <div>
         <a href="/">
           <Image

@@ -14,7 +14,6 @@ const Page = () => {
           <div className="grid gap-8 md:grid-cols-2 lg:gap-12">
             <div>
               <div className="h-64 overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-auto">
-                {/* <img src={img} loading="lazy" alt="Photo by Martin Sanchez" className="h-full w-full object-cover object-center" /> */}
                 <Image
                   src={img}
                   height={1000}
@@ -22,7 +21,6 @@ const Page = () => {
                   alt="logo"
                   className="h-full w-full"
                 />
-                {/* <img src="https://images.unsplash.com/photo-1610465299996-30f240ac2b1c?auto=format&q=75&fit=crop&w=600&h=750" loading="lazy" alt="Photo by Martin Sanchez" className="h-full w-full object-cover object-center" /> */}
               </div>
             </div>
 
@@ -63,20 +61,7 @@ const Page = () => {
         </div>
       </div>
 
-      <div className="dark:bg-dark">
-        <div className="py-6 px-10  ml-16 rounded-lg mr-16 bg-indigo-500 text-gray-900">
-          <div className="container mx-auto flex flex-col items-center justify-center p-4 space-y-8 md:p-10 lg:space-y-0 lg:flex-row lg:justify-between">
-            <h1 className="text-3xl font-semibold leadi text-center lg:text-left text-white">
-              Any Question?
-            </h1>
-            <a href="../contact/">
-              <button className="px-8 py-3 text-lg font-semibold rounded bg-white ">
-                Contact
-              </button>
-            </a>
-          </div>
-        </div>
-      </div>
+    
 
       <Footer />
     </div>
