@@ -120,7 +120,7 @@ export default function LoginPage() {
                         })
                       }
                     />
-                    <button className="ml-2" onClick={handleClickShowPassword}>
+                    <span className="ml-2" onClick={handleClickShowPassword}>
                       {
                         showPassword? (
                           <IconEye width={20} height={20} />
@@ -128,7 +128,7 @@ export default function LoginPage() {
                           <IconEyeClosed width={20} height={20} />
                         )
                       }
-                    </button>
+                    </span>
                   </div>
                 </div>
                 <div className="mt-10">
