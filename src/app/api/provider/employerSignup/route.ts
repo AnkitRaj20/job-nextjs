@@ -12,9 +12,9 @@ export async function POST(request: NextRequest) {
         const {firstName,middleName,lastName,email,password,mobile,gender,address} = reqBody
 
         console.log(reqBody);
-        
+        const lowerEmail = email.toLowerCase();
         // check if user exists or not
-        const user = await Employer.findOne({email})
+        const user = await Employer.findOne({email:lowerEmail})
         const userMob = await Employer.findOne({mobile});
 
         if(user){
@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
             middleName,
             lastName,
             mobile,
-            email,
+            email:lowerEmail,
             password:hashedPassword
         })
 

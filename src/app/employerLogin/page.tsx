@@ -4,10 +4,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar2";
 
+// Icons
+import { IconEyeClosed, IconEye } from "@tabler/icons-react";
 export default function LoginPage() {
   const router = useRouter();
   const [user, setUser] = useState({
@@ -16,6 +17,7 @@ export default function LoginPage() {
   });
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [showPassword, setshowPassword] = useState(false);
   const [data, setData] = useState("");
 
   const onLogin = async (e: any) => {
@@ -45,12 +47,17 @@ export default function LoginPage() {
     }
   }, [user]);
 
+  const handleClickShowPassword = (e:any) => {
+    e.preventDefault();
+    setshowPassword(!showPassword);
+  };
   return (
     <>
       <Navbar />
       <Toaster />
       <div className="lg:flex">
         <div className="lg:w-1/2 xl:max-w-screen-sm bg-white dark:bg-dark">
+        <div className="py-12 bg-white dark:bg-dark  lg:bg-white flex justify-center lg:justify-start lg:px-12"></div>
           <div className="mt-10 bg-white dark:bg-dark
            px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
             <h2
@@ -97,9 +104,10 @@ export default function LoginPage() {
                       </a>
                     </div>
                   </div>
+                  <div className="flex flex-row text-center justify-center">
                   <input
                     className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500  dark:bg-dark dark:text-gray-300 dark:border-gray-600"
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     placeholder="Enter your password"
                     value={user.password}
                     onChange={(e) =>
@@ -109,6 +117,16 @@ export default function LoginPage() {
                       })
                     }
                   />
+                  <span className="ml-2" onClick={handleClickShowPassword}>
+                      {
+                        showPassword? (
+                          <IconEye width={20} height={20} />
+                        ) : (
+                          <IconEyeClosed width={20} height={20} />
+                        )
+                      }
+                    </span>
+                  </div>
                 </div>
                 <div className="mt-10">
                   <button

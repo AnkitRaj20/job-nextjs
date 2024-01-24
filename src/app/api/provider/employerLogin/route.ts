@@ -14,8 +14,9 @@ export async function POST(request:NextRequest){
         const {email, password} = reqBody;
         console.log(reqBody)
 
+        const lowerEmail = email.toLowerCase();
         // Checks if user exsits or not
-        const employer = await Employer.findOne({email})
+        const employer = await Employer.findOne({email:lowerEmail})
 
         if(!employer){
             return NextResponse.json({error:"Employer does not exist"},{status:400})

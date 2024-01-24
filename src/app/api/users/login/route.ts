@@ -3,7 +3,6 @@ import User from "@/models/userModels";
 import { NextRequest, NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
-import toast from "react-hot-toast";
 
 connect();
 
@@ -14,14 +13,12 @@ export async function POST(request: NextRequest) {
     const { email, password } = reqBody;
     console.log(reqBody);
 
+    const lowerEmail = email.toLowerCase();
     // Checks if user exsits or not
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: lowerEmail });
 
     if (!user) {
-      return NextResponse.json(
-        { error: "User does not exist" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: lowerEmail }, { status: 400 });
     }
 
     // Check if password is correct
@@ -32,7 +29,6 @@ export async function POST(request: NextRequest) {
     }
 
     const isUser = user.isUser;
-     
 
     // =========TOKEN=============
 
@@ -60,8 +56,6 @@ export async function POST(request: NextRequest) {
     response.cookies.set("isUser", isUser, {
       httpOnly: true,
     });
-
-    
 
     return response;
   } catch (error: any) {

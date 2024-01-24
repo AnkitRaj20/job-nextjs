@@ -12,10 +12,11 @@ export async function POST(request: NextRequest) {
         const {firstName,middleName,lastName,email,password,mobile,gender,address} = reqBody
 
         const lowerCaseAddress = address.toLowerCase();
+        const lowerEmail = email.toLowerCase();
         console.log(reqBody);
         
         // check if user exists or not
-        const user = await User.findOne({email})
+        const user = await User.findOne({email:lowerEmail})
         const userMob = await User.findOne({mobile});
 
         if(user){
@@ -40,7 +41,7 @@ export async function POST(request: NextRequest) {
             middleName,
             lastName,
             mobile,
-            email,
+            email:lowerEmail,
             gender,
             address:lowerCaseAddress,
             password:hashedPassword

@@ -4,10 +4,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar2";
 
+// Icons
+import { IconEyeClosed, IconEye } from "@tabler/icons-react";
 export default function LoginPage() {
   const router = useRouter();
   const [user, setUser] = useState({
@@ -16,6 +17,7 @@ export default function LoginPage() {
   });
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [showPassword, setshowPassword] = useState(false);
   const [data, setData] = useState("");
 
   const onLogin = async (e: any) => {
@@ -45,6 +47,10 @@ export default function LoginPage() {
     }
   }, [user]);
 
+  const handleClickShowPassword = (e:any) => {
+    e.preventDefault();
+    setshowPassword(!showPassword);
+  };
   return (
     <>
       <Navbar />
@@ -99,20 +105,31 @@ export default function LoginPage() {
                       </a>
                     </div>
                   </div>
-                  <input
-                    className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500
+                  <div className="flex flex-row text-center justify-center">
+                    <input
+                      className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500
                     dark:bg-dark dark:text-gray-300 dark:border-gray-600
                     "
-                    type="password"
-                    placeholder="Enter your password"
-                    value={user.password}
-                    onChange={(e) =>
-                      setUser({
-                        ...user,
-                        password: e.target.value,
-                      })
-                    }
-                  />
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Enter your password"
+                      value={user.password}
+                      onChange={(e) =>
+                        setUser({
+                          ...user,
+                          password: e.target.value,
+                        })
+                      }
+                    />
+                    <button className="ml-2" onClick={handleClickShowPassword}>
+                      {
+                        showPassword? (
+                          <IconEye width={20} height={20} />
+                        ) : (
+                          <IconEyeClosed width={20} height={20} />
+                        )
+                      }
+                    </button>
+                  </div>
                 </div>
                 <div className="mt-10">
                   <button
@@ -125,12 +142,12 @@ export default function LoginPage() {
                 </div>
               </form>
               <div className="mt-12 text-sm font-display font-semibold text-gray-700 dark:text-white text-center">
-                Don't have an account ? 
+                Don't have an account ?
                 <Link
                   href="/signup"
                   className="cursor-pointer text-indigo-600 dark:text-indigo-200 hover:text-indigo-800"
                 >
-                   Sign up
+                  Sign up
                 </Link>
               </div>
             </div>
