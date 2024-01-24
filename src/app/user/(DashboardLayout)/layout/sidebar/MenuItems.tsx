@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import {
   IconUserCircle,
   IconLogout2,
@@ -5,6 +6,7 @@ import {
 } from "@tabler/icons-react";
 
 import { uniqueId } from "lodash";
+import Link from "next/link";
 
 const Menuitems = [
   // {
@@ -18,6 +20,7 @@ const Menuitems = [
     title: "Profile",
     icon: IconUserCircle,
     href: "/user/profile",
+    
   },
   {
     id: uniqueId(),

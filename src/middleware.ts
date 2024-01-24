@@ -11,9 +11,12 @@ export function middleware(request: NextRequest) {
       || path === "/employerLogin"
       || path === "/employerSignup"
 
-      const isEmployeeDashboard = path === '/dashboard/profile' || path=='/dashboard/postJob' || path=='/dashboard/postedJob'
+      const isEmployeeDashboard = path === '/dashboard/profile' || path=='/dashboard/postJob' || path=='/dashboard/postedJob' || path=='/dashboard/availableworkers'
       
-      const isUserDashboard = path === '/user/jobs' || path=='/user/profile' 
+      const isUserDashboard = path === '/user/jobs' 
+      || path=='/user/jobs/:path*' 
+      || path=='/user/postedprofile' 
+      || path=='/useruser/jobdetails/:path*' 
 
      const token = request.cookies.get('token') ?.value || "";
     

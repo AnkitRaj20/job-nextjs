@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 
 const Page = () => {
   const router = useRouter()
+  
   const logout = async() => {
     if (typeof window !== 'undefined') {
       // Perform localStorage action
