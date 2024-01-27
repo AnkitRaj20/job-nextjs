@@ -6,6 +6,9 @@ import Navbar from "@/components/Navbar2";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+// Components
+import Loader from "@/components/Loader"
+
 const Page = ({ params }: any) => {
   const encodedString = params.id;
   const decodedValue = decodeURIComponent(encodedString);
@@ -122,7 +125,7 @@ const Page = ({ params }: any) => {
     <>
       <Navbar />
       {loading ? (
-        "loading"
+        <Loader />
       ) : (
         //    **Grid Start
         <div className="grid grid-cols-1 m-7 gap-4 lg:grid-cols-3 lg:gap-8">

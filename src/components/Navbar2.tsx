@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import React, { useEffect } from "react";
 import Link from "next/link";
@@ -17,8 +18,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+import { usePathname} from 'next/navigation';
+
 const Page = () => {
   const { setTheme } = useTheme();
+  const pathname = usePathname();
   useEffect(() => {
     const openMenu = () => {
       const menu = document.getElementById("menu");
@@ -28,6 +32,7 @@ const Page = () => {
     const menuButton = document.getElementById("menu-button");
     menuButton?.addEventListener("click", openMenu);
 
+   
     // Cleanup: Remove the event listener when the component unmounts
     return () => {
       menuButton?.removeEventListener("click", openMenu);
@@ -80,31 +85,41 @@ const Page = () => {
         >
           <Link
             href="/"
-            className="mr-5 flex   lg:py-3  hover:text-green-500 hover:underline"
+            className={`mr-5 flex   lg:py-3  hover:text-green-500 hover:underline ${
+              pathname === "/" ? "text-indigo-500" : ""
+            } `}
           >
             Home
           </Link>
           <Link
             href="/about"
-            className="mr-5 flex lg:py-3  hover:text-green-500 hover:underline"
+            className={`mr-5 flex   lg:py-3  hover:text-green-500 hover:underline ${
+              pathname === "/about" ? "text-indigo-500" : ""
+            } `}
           >
             About
           </Link>
           <Link
             href="/jobs"
-            className="mr-5 flex lg:py-3  hover:text-green-500 hover:underline"
+            className={`mr-5 flex   lg:py-3  hover:text-green-500 hover:underline ${
+              pathname === "/jobs" ? "text-indigo-500" : ""
+            } `}
           >
             Jobs
           </Link>
           <Link
             href="/feature"
-            className="mr-5 flex lg:py-3  hover:text-green-500 hover:underline"
+            className={`mr-5 flex   lg:py-3  hover:text-green-500 hover:underline ${
+              pathname === "/feature" ? "text-indigo-500" : ""
+            } `}
           >
             Features
           </Link>
           <Link
             href="/contact"
-            className="mr-5 flex lg:py-3  hover:text-green-500 hover:underline"
+            className={`mr-5 flex   lg:py-3  hover:text-green-500 hover:underline ${
+              pathname === "/contact" ? "text-indigo-500" : ""
+            } `}
           >
             Contact Us
           </Link>

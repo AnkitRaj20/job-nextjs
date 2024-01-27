@@ -6,7 +6,6 @@ import {
 } from "@tabler/icons-react";
 
 import { uniqueId } from "lodash";
-import Link from "next/link";
 
 const Menuitems = [
   // {
@@ -33,6 +32,12 @@ const Menuitems = [
     title: "Posted Profile",
     icon: IconAddressBook,
     href: "/user/postedprofile",
+  },
+  {
+    id: uniqueId(),
+    title: "Company Jobs",
+    icon: IconAddressBook,
+    href: "/user/companyjobs",
   },
   {
     id: uniqueId(),
