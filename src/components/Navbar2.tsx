@@ -91,6 +91,12 @@ const Page = () => {
             About
           </Link>
           <Link
+            href="/jobs"
+            className="mr-5 flex lg:py-3  hover:text-green-500 hover:underline"
+          >
+            Jobs
+          </Link>
+          <Link
             href="/feature"
             className="mr-5 flex lg:py-3  hover:text-green-500 hover:underline"
           >

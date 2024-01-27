@@ -4,7 +4,9 @@ const currentYear = new Date().getFullYear();
 
   return (
     <div>
-     <footer className="flex flex-col items-center justify-between px-4 py-12 mx-auto max-w-7xl md:flex-row">
+     <footer className="flex flex-col items-center justify-between px-4 py-12 mx-auto max-w-7xl md:flex-row  sticky 
+             inset-x-0 
+             bottom-0 ">
   
   <div className="flex items-center space-x-6">
     
