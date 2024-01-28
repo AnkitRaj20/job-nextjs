@@ -33,7 +33,7 @@ const Page = () => {
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const getUserDetails = async () => {
     const response = await axios.get("/api/provider/userData");
-    console.log(response.data);
+    // console.log(response.data);
     setData({
       ...data,
       employerId: response.data.data._id,
@@ -54,10 +54,10 @@ const Page = () => {
   const post = async () => {
     try {
       const response = await axios.post("/api/provider/postJob", data);
-      console.log(response);
+      // console.log(response);
       toast.success("Job Posted Successfully");
     } catch (error: any) {
-      console.log(error.response.data.error);
+      // console.log(error.response.data.error);
       toast.error(error.response.data.error);
     }
   };

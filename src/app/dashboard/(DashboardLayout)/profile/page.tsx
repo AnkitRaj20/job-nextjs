@@ -93,9 +93,9 @@ const Page = () => {
         data,
       });
       toast.success("Update success");
-      console.log(response);
+      // console.log(response);
     } catch (error: any) {
-      console.log(error.response.data.error);
+      // console.log(error.response.data.error);
       toast.error(error.response.data.error);
     }
   };

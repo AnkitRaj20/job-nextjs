@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
   try {
     const reqBody = await request.json();
     const { role } = reqBody;
-    console.log(reqBody);
+    // console.log(reqBody);
 
     let postedProfile = await PostedProfile.find({ role: role });
 

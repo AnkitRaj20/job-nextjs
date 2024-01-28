@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
     const { endpoint } = reqBody;
     const { job_id } = reqBody.queryList;
 
-    console.log(reqBody.queryList);
+    //console.log(reqBody.queryList);
     const options = {
       method: "GET",
       url: `https://${process.env.RAPID_API_HOST}/${endpoint}`,

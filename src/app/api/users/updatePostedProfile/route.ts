@@ -10,8 +10,8 @@ export async function POST(request:NextRequest){
         const {id} = reqBody.modal;
         const { role,location,education,experience,english,mobile,salary,jobType} = reqBody.updateData;
         const {name} = reqBody
-        console.log("id::"+{id})
-        console.log("name::"+name)
+        // console.log("id::"+{id})
+        // console.log("name::"+name)
 
         // Checks if user exsits or not
         const profile = await Profile.findOne({_id:id})

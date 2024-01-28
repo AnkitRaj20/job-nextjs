@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
         const reqBody = await request.json();
         const {employerId,employerName,role,location,education,experience,salary,mobile,english,jobType} = reqBody
 
-        console.log(reqBody);
+        //console.log(reqBody);
         
         // check if user exists or not
         const employee = await Employer.findOne({_id:employerId})
@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
         })
 
         const savedJob = await newJob.save();
-        console.log(savedJob)
+        //console.log(savedJob)
         
       
         return NextResponse.json({

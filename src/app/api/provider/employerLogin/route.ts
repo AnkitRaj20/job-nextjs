@@ -12,7 +12,7 @@ export async function POST(request:NextRequest){
         const reqBody = await request.json();
 
         const {email, password} = reqBody;
-        console.log(reqBody)
+        // console.log(reqBody)
 
         const lowerEmail = email.toLowerCase();
         // Checks if user exsits or not

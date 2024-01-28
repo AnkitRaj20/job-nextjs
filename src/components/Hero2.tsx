@@ -10,7 +10,6 @@ const Hero2 = () => {
  const router = useRouter();
  const [search, setSearch] = useState("");
   const jobSearch = (data:string) => {
-    console.log(data)
     router.push(`/user/jobs/${search}`);
   }
   return (

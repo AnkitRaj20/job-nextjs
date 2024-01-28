@@ -49,7 +49,6 @@ const Page = () => {
 
   const getUserDetails = async () => {
     const response = await axios.get("/api/users/candidateData");
-    console.log(response.data.data);
     setId(response.data.data._id);
   };
 
@@ -58,7 +57,6 @@ const Page = () => {
       const response = await axios.post("/api/users/checkPostedProfile", {
         _id: id,
       });
-      console.log("checkPostedProfile::" + response.data.data);
       if (response.data.data) {
         setcheckProfilePosted(true);
       }
@@ -70,12 +68,10 @@ const Page = () => {
   };
 
   const fetchData = async () => {
-    console.log("id::" + id);
     try {
       const response = await axios.post("/api/users/candidateProfile", {
         _id: id,
       });
-      console.log("Success", response.data.data._id);
       setData({
         id: response.data.data._id,
         firstName: response.data.data.firstName,
@@ -114,7 +110,6 @@ const Page = () => {
       const response = await axios.post("/api/users/updateCandidateProfile", {
         data,
       });
-      console.log(response);
     } catch (error: any) {
       console.log(error.response.data.error);
     }
@@ -122,7 +117,6 @@ const Page = () => {
 
   // Post Profile
   const postProfileButton = async (modal: any) => {
-    console.log("post profile");
     setShowModal({
       ...showModal,
       visible: false,
@@ -133,7 +127,6 @@ const Page = () => {
         data,
         postProfile,
       });
-      console.log(response);
       fetchData();
     } catch (error: any) {
       console.log(error.response.data.error);

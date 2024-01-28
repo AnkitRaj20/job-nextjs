@@ -90,7 +90,7 @@ const Page = ({ params }: any) => {
       setapplyOptions(response.data.data[0].apply_options);
       setrequiredSkills(response.data.data[0].job_required_skills);
       
-      console.log(response.data.data);
+      // console.log(response.data.data);
       setLoading(false);
     } catch (error: any) {
       console.error(error);

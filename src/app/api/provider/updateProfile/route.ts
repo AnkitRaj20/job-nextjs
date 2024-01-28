@@ -9,7 +9,7 @@ export async function POST(request:NextRequest){
         const reqBody = await request.json();
 
         const {email, firstName,middleName,lastName,mobile} = reqBody.data;
-        console.log("email::"+{email})
+        // console.log("email::"+{email})
 
         // Checks if user exsits or not
         const employer = await Employer.findOne({email})

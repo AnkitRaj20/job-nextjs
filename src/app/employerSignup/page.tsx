@@ -22,7 +22,7 @@ const Page = () => {
     try {
       setLoading(true);
       const response = await axios.post("/api/provider/employerSignup", data);
-      console.log("Signup success", response.data);
+      // console.log("Signup success", response.data);
       toast.success("Signup success");
       router.push("/employerLogin");
     } catch (error: any) {

@@ -10,9 +10,9 @@ connect();
 export async function GET(request:NextRequest){
     try {
       const userId= await getDataFromToken(request);
-      console.log(userId)
+      // console.log(userId)
       const employee = await Employee.findOne({_id: userId}).select("-password -isAdmin");
-      console.log("user::"+employee)
+      // console.log("user::"+employee)
       
       return NextResponse.json({
         message: "employee found",

@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
 
         const lowerCaseAddress = address.toLowerCase();
         const lowerEmail = email.toLowerCase();
-        console.log(reqBody);
+        // console.log(reqBody);
         
         // check if user exists or not
         const user = await User.findOne({email:lowerEmail})
@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
         })
 
         const savedUser = await newUser.save();
-        console.log(savedUser)
+        // console.log(savedUser)
         
         // Send verification email
         // await sendEmail({

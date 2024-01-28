@@ -17,9 +17,8 @@ export default function ContactPage() {
   const onSubmit = async (data: any) => {
     try {
       setLoading(true);
-      console.log(data)
       const response = await axios.post("/api/admin/contactUs", data);
-      console.log("Contact Us sent", response.data);
+      // console.log("Contact Us sent", response.data);
       toast.success("Message Sent");
     } catch (error: any) {
       console.log("Sending failed", error.response);

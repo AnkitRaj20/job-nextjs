@@ -29,7 +29,6 @@ const Page = () => {
         endpoint , queryList,
       });
       setData(response.data.data);
-      console.log(response.data.data)
       setLoading(false);
     } catch (error: any) {
       console.error(error);
@@ -68,7 +67,6 @@ const Page = () => {
   }
 
   const detailPage = async(id:any) => {
-    console.log(id);
     router.push(`/companydetails/${id}`);
   }
 

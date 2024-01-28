@@ -11,7 +11,7 @@ const Page = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get("/api/users/getUserProfile");
-      console.log("Success", response.data.data);
+      // console.log("Success", response.data.data);
       setData(response.data.data);
     } catch (error: any) {
       console.log(error.response.data.error);
@@ -35,7 +35,7 @@ const Page = () => {
       const response = await axios.post("/api/users/getProfileByTitle", {
         role: search,
       });
-      console.log("Success", response.data.data);
+      // console.log("Success", response.data.data);
 
       setData(response.data.data);
     } catch (error: any) {

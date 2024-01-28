@@ -8,7 +8,7 @@ export async function POST(request:NextRequest){
         const reqBody = await request.json();
 
         const {_id} = reqBody;
-        console.log(reqBody)
+        //console.log(reqBody)
 
         // Checks if user exsits or not
         const employer = await Employer.findOne({_id})

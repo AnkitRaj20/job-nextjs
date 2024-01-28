@@ -9,7 +9,7 @@ export async function POST(request:NextRequest){
         const reqBody = await request.json();
 
         const {_id} = reqBody;
-        console.log("id::"+{_id})
+        // console.log("id::"+{_id})
 
         // const job = await Job.findOne({_id})
         

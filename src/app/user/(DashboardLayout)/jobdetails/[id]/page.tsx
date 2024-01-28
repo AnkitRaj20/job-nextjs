@@ -26,7 +26,7 @@ const Page = ({ params }: any) => {
       const response = await axios.post("/api/users/fullJobDetails", {
         _id: id,
       });
-      console.log(response.data.data);
+      // console.log(response.data.data);
       setLoading(false);
       setData({
         employerId: response.data.data.employerId,

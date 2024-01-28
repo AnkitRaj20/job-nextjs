@@ -10,7 +10,7 @@ export async function POST(request:NextRequest){
 
         const {id,firstName,middleName,lastName,mobile,address,gender} = reqBody.data;
         const {role,education,experience,english,jobType,salary} = reqBody.postProfile;
-        console.log(reqBody)
+        // console.log(reqBody)
 
         const name = firstName + ' ' + middleName + ' ' + lastName; 
 
@@ -38,7 +38,7 @@ export async function POST(request:NextRequest){
         })
 
         const savedProfile = await newProfile.save();
-        console.log(savedProfile)
+        // console.log(savedProfile)
         
       
         return NextResponse.json({

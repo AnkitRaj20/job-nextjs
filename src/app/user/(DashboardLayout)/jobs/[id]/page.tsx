@@ -15,7 +15,7 @@ const Page = ({params}:any) => {
   const fetchData = async () => {
     try {
       const response = await axios.get("/api/users/getJob");
-      console.log("Success", response.data.data);
+      
       setData(response.data.data);
     } catch (error: any) {
       console.log(error.response.data.error);
@@ -33,7 +33,6 @@ const Page = ({params}:any) => {
       const response = await axios.post("/api/users/getJobByTitle", {
         role: data,
       });
-      console.log("Success", response.data.data);
 
       setData(response.data.data);
     } catch (error: any) {
@@ -51,7 +50,6 @@ const Page = ({params}:any) => {
       const response = await axios.post("/api/users/getJobByTitle", {
         role: search,
       });
-      console.log("Success", response.data.data);
 
       setData(response.data.data);
     } catch (error: any) {

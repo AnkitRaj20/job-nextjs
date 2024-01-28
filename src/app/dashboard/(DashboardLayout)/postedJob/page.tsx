@@ -51,7 +51,7 @@ const Page = () => {
 
   const getUserDetails = async () => {
     const response = await axios.get("/api/provider/userData");
-    console.log(response.data.data);
+    // console.log(response.data.data);
     setId(response.data.data._id);
     setName(
       response.data.data.firstName +
@@ -67,7 +67,7 @@ const Page = () => {
       const response = await axios.post("/api/provider/getPostedJobData", {
         _id: id,
       });
-      console.log("Success", response.data.data);
+      // console.log("Success", response.data.data);
       setData(response.data.data);
     } catch (error: any) {
       console.log(error.response.data.error);
@@ -107,7 +107,7 @@ const Page = () => {
       const response = await axios.post("/api/provider/deletePostedJob", {
         _id: id,
       });
-      console.log("Success", response.data);
+      // console.log("Success", response.data);
       toast.success("Job deleted successfully");
       fetchData();
     } catch (error: any) {
@@ -128,11 +128,11 @@ const Page = () => {
         modal,
         name: name,
       });
-      console.log(response);
+      // console.log(response);
       toast.success("Updated successfully");
       fetchData();
     } catch (error: any) {
-      console.log(error.response.data.error);
+      // console.log(error.response.data.error);
       toast.error(error.response.data.error);
     }
   };

@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
         const reqBody = await request.json();
         const {firstName,middleName,lastName,email,password,mobile,gender,address} = reqBody
 
-        console.log(reqBody);
+         //console.log(reqBody);
         const lowerEmail = email.toLowerCase();
         // check if user exists or not
         const user = await Employer.findOne({email:lowerEmail})
@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
         })
 
         const savedUser = await newUser.save();
-        console.log(savedUser)
+        //console.log(savedUser)
         
         // Send verification email
         // await sendEmail({
