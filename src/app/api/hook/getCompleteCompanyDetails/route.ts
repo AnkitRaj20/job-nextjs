@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
       },
       headers: {
         "X-RapidAPI-Key": process.env.RAPID_API_KEY,
-        "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
+        "X-RapidAPI-Host": process.env.RAPID_API_HOST,
       },
     };
     const response = await axios.request(options);
