@@ -11,6 +11,7 @@ import Article from "@/components/Article";
 // import 'aos/dist/aos.css';
 import Steps from "@/components/Steps";
 import Cta from "@/components/Cta";
+import Faq from "@/components/Faq";
 
 
 export default function Home() {
@@ -35,6 +36,8 @@ export default function Home() {
       {/* Testimonial starts here*/}
       <Testimonial />
       {/* Testimonial ends here */}
+
+      <Faq />
       <Footer />
     </>
   );
