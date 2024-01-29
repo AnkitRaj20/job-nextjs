@@ -9,6 +9,7 @@ import Navbar from "@/components/Navbar2";
 
 // Icons
 import { IconEyeClosed, IconEye } from "@tabler/icons-react";
+
 export default function LoginPage() {
   const router = useRouter();
   const [user, setUser] = useState({
@@ -97,6 +98,7 @@ export default function LoginPage() {
                     </div>
                     <div>
                       <a
+                      href="../forgotpassword"
                         className="text-xs font-display font-semibold text-indigo-600
                         dark:text-indigo-200 hover:text-indigo-800
                         cursor-pointer"
