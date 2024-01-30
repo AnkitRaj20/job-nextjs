@@ -7,15 +7,13 @@ import Testimonial from "@/components/Testimonial";
 import Stats from "@/components/Stats";
 import Article from "@/components/Article";
 
-// import AOS from 'aos';
-// import 'aos/dist/aos.css';
 import Steps from "@/components/Steps";
 import Cta from "@/components/Cta";
 import Faq from "@/components/Faq";
 
 
 export default function Home() {
-  // AOS.init();
+ 
 
   return (
     <>
