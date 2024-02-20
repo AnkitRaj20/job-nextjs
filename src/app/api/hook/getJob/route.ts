@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
   try {
     const reqBody = await request.json();
     const { endpoint } = reqBody;
-    const { query, page, num_pages } = reqBody.queryList;
+    const { query, page, num_pages,date_posted } = reqBody.queryList;
 
     const options = {
       method: "GET",
@@ -18,7 +18,8 @@ export async function POST(request: NextRequest) {
       params: {
         query: `${query} in india`,
         page: page,
-        num_pages: num_pages
+        num_pages: num_pages,
+        date_posted : date_posted
       },
       headers: {
         "X-RapidAPI-Key": process.env.RAPID_API_KEY,

@@ -11,10 +11,7 @@ import Steps from "@/components/Steps";
 import Cta from "@/components/Cta";
 import Faq from "@/components/Faq";
 
-
 export default function Home() {
- 
-
   return (
     <>
       <Navbar />

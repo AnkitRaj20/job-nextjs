@@ -18,6 +18,7 @@ const Page = () => {
     query: searchItem,
     page: 1,
     num_pages: "1",
+    date_posted: "today"
   });
 
   const endpoint = "search";
@@ -179,6 +180,9 @@ const Page = () => {
                           {item.job_max_salary
                             ? item.job_max_salary
                             : "Not Disclosed"}
+                        </p>
+                        <p className="mt-1 leading-relaxed font-medium">
+                        Experiece (in months): {item.experience ? item.experience  : "No experience required"}
                         </p>
 
                         
