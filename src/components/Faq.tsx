@@ -26,7 +26,7 @@ const Faq = () => {
 
   return (
     <div className="container">
-        <h1 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight  mb-3 text-center">Frequently Asked Question</h1>
+        <h1 className="text-2xl font-bold leading-7 text-gray-900  sm:truncate sm:text-3xl sm:tracking-tight  mb-3 text-center dark:text-white py-4">Frequently Asked Question</h1>
       <div className="space-y-4">
         
 
@@ -34,10 +34,10 @@ const Faq = () => {
           return (
             <div key={index}>
               <details
-                className="group border-s-4 border-green-500 bg-gray-50 p-6 [&_summary::-webkit-details-marker]:hidden "
+                className="group border-s-4 border-green-500 bg-gray-50 dark:bg-dark  p-6 [&_summary::-webkit-details-marker]:hidden "
               >
                 <summary className="flex cursor-pointer items-center justify-between gap-1.5">
-                  <h2 className="text-lg font-medium text-gray-900">
+                  <h2 className="text-lg font-medium text-gray-900 dark:text-white">
                     {item.ques}
                   </h2>
 
@@ -57,7 +57,7 @@ const Faq = () => {
                   </span>
                 </summary>
 
-                <p className="mt-4 leading-relaxed text-gray-700">
+                <p className="mt-4 leading-relaxed text-gray-700 dark:text-white">
                   {item.ans}
                 </p>
               </details>
