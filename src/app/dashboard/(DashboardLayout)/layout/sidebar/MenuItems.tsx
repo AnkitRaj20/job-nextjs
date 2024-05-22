@@ -22,7 +22,7 @@ const Menuitems = [
     id: uniqueId(),
     title: "Post Job",
     icon: IconAddressBook,
-    href: "/dashboard/posJob",
+    href: "/dashboard/postJob",
   },
   {
     id: uniqueId(),
