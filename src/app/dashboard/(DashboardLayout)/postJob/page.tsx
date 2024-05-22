@@ -57,7 +57,6 @@ const Page = () => {
       // console.log(response);
       toast.success("Job Posted Successfully");
     } catch (error: any) {
-      // console.log(error.response.data.error);
       toast.error(error.response.data.error);
     }
   };
