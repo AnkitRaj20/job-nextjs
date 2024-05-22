@@ -22,19 +22,19 @@ const Menuitems = [
     id: uniqueId(),
     title: "Post Job",
     icon: IconAddressBook,
-    href: "/dashboard/postjob",
+    href: "/dashboard/posJob",
   },
   {
     id: uniqueId(),
     title: "View Posted Job",
     icon: IconEyeTable,
-    href: "/dashboard/postedjob",
+    href: "/dashboard/postedJob",
   },
   {
     id: uniqueId(),
     title: "View Job Workers",
     icon: IconEyeTable,
-    href: "/dashboard/availableworkers"
+    href: "/dashboard/availableWorkers"
   },
   {
     id: uniqueId(),
