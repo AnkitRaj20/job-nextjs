@@ -53,6 +53,10 @@ const Page = () => {
 
   const post = async () => {
     try {
+      if(data.mobile.length != 10){
+        toast.error("Please enter 10 digit mobile number")
+        return
+      }
       const response = await axios.post("/api/provider/postJob", data);
       // console.log(response);
       toast.success("Job Posted Successfully");
@@ -147,6 +151,7 @@ const Page = () => {
                   className="dark:bg-slate-200"
                     required
                     id="salary"
+                    type="number"
                     label="Salary"
                     variant="outlined"
                     value={data.salary}
