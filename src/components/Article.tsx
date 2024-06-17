@@ -6,7 +6,7 @@ const Article = () => {
       <div className="p-5 mx-auto sm:p-10 md:p-16 dark:bg-dark dark:text-gray-100">
         <div className="flex flex-col max-w-3xl mx-auto overflow-hidden rounded">
           <img
-            src="https://source.unsplash.com/random/480x360?job"
+            src="https://images.unsplash.com/photo-1598257006626-48b0c252070d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt=""
             className="w-full h-60 sm:h-96 dark:bg-gray-500"
           />

@@ -123,6 +123,11 @@ const Page = () => {
     });
 
     try {
+      console.log("updateData",updateData)
+      if(updateData.mobile.length !=10){
+        toast.error("Please enter 10 digit mobile number")
+        return
+      }
       const response = await axios.post("/api/provider/updatePostedJobData", {
         updateData,
         modal,
@@ -382,6 +387,7 @@ const Page = () => {
                                 id="salary"
                                 label="Salary"
                                 variant="outlined"
+                                type="number"
                                 value={updateData.salary}
                                 onChange={(e) => {
                                   setUpdateData({
