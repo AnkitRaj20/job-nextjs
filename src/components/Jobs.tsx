@@ -13,7 +13,7 @@ const Page = () => {
   const router = useRouter();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [searchItem, setSearchItem] = useState("frontend developer")
+  const [searchItem, setSearchItem] = useState("frontend developer in noida")
   const [queryList, setQueryList] = useState({
     query: searchItem,
     page: 1,
