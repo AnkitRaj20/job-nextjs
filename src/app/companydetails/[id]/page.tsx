@@ -80,17 +80,16 @@ const Page = ({ params }: any) => {
         experience: response.data.data[0].job_required_experience.required_experience_in_months
       });
       setrequiredEducation({
-        high_school: response.data.data[0].job_required_education.high_school,
-        Inter: response.data.data[0].job_required_education.associates_degree,
-        bachelors_degree: response.data.data[0].job_required_education.bachelors_degree,
-        postgraduate_degree: response.data.data[0].job_required_education.postgraduate_degree,
-        professional_certification:response.data.data[0].job_required_education.professional_certification
+        high_school: response.data.data[0]?.job_required_education?.high_school,
+        Inter: response.data.data[0]?.job_required_education?.associates_degree,
+        bachelors_degree: response.data.data[0]?.job_required_education?.bachelors_degree,
+        postgraduate_degree: response.data.data[0]?.job_required_education?.postgraduate_degree,
+        professional_certification:response.data.data[0]?.job_required_education?.professional_certification
       })
-      setRemoteJob(response.data.data[0].job_is_remote);
-      setapplyOptions(response.data.data[0].apply_options);
-      setrequiredSkills(response.data.data[0].job_required_skills);
+      setRemoteJob(response.data.data[0]?.job_is_remote);
+      setapplyOptions(response.data.data[0]?.apply_options);
+      setrequiredSkills(response.data.data[0]?.job_required_skills);
       
-      // console.log(response.data.data);
       setLoading(false);
     } catch (error: any) {
       console.error(error);
@@ -103,8 +102,8 @@ const Page = ({ params }: any) => {
     getCompleteCompanyDetails(decodedValue);
   }, []);
 
-  const utcDate = data.job_posted_at_datetime_utc;
-  const indianDate = new Date(utcDate.toLocaleString());
+  const utcDate = data?.job_posted_at_datetime_utc;
+  const indianDate = new Date(utcDate?.toLocaleString());
 
   // Format the date for display
   const dateOptions = {
@@ -309,7 +308,7 @@ const Page = ({ params }: any) => {
                     Apply Links
                   </strong>
 
-                  {applyOptions.length > 0 ? (
+                  {applyOptions?.length > 0 ? (
                     <ul className="mt-4 list-disc">
                       {applyOptions.map((applyOption: any, index:any) => (
                         <li key={index} className="flex flex-row justify-between m-4">

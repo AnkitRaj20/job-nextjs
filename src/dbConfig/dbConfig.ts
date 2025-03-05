@@ -7,6 +7,7 @@ export async function connect() {
         const connection =  mongoose.connection;
 
         // ============ Listening Events ===============
+        
         connection.on('connected', () => {
             console.log("Connected successfully")
         })
